@@ -6,49 +6,66 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:35 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/02 19:46:54 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/04 19:51:43 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_psnode	*ps_lstnew(int nbr)
+t_lnode	*llstnew(int nbr)
 {
-	t_psnode	*new;
+	t_lnode	*new;
 
-	new = (t_psnode *) ft_calloc(1, sizeof(t_psnode));
+	new = (t_lnode *) ft_calloc(1, sizeof(t_lnode));
 	if (!new)
 		exit(2);
-	new -> nbr = nbr;
-	new -> next = NULL;
-	new -> prev = NULL;
+	new->nbr = nbr;
+	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
-t_psnode	*ps_lstlast(t_psnode *stack)
+size_t	llstsize(t_lnode *stack)
 {
-	t_psnode	*tmp;
+	t_lnode	*node;
+	size_t	size;
+
+	if (!stack)
+		return (0);
+	size = 0;
+	node = stack;
+	while (node)
+	{
+		size++;
+		node = node->next;
+	}
+	return (size);
+}
+
+t_lnode	*llstlast(t_lnode *stack)
+{
+	t_lnode	*node;
 
 	if (!stack)
 		return (NULL);
-	tmp = stack;
-	while (tmp -> next)
-		tmp = tmp -> next;
-	return (tmp);
+	node = stack;
+	while (node->next)
+		node = node->next;
+	return (node);
 }
 
-void	ps_lstadd_front(t_psnode **stack, t_psnode *new)
+void	llstadd_front(t_lnode **stack, t_lnode *new)
 {
 	if (!stack || !new)
 		return ;
 	new -> next = *stack;
-	(*stack)-> prev = new;
+	(*stack)->prev = new;
 	*stack = new;
 }
 
-void	ps_lstadd_back(t_psnode **stack, t_psnode *new)
+void	llstadd_back(t_lnode **stack, t_lnode *new)
 {
-	t_psnode	*tmp;
+	t_lnode	*node;
 
 	if (!stack || !new)
 		return ;
@@ -56,23 +73,8 @@ void	ps_lstadd_back(t_psnode **stack, t_psnode *new)
 		*stack = new;
 	else
 	{
-		tmp = ps_lstlast(*stack);
-		tmp -> next = new;
-		new -> prev = tmp;
+		node = llstlast(*stack);
+		node->next = new;
+		new->prev = node;
 	}
-}
-
-void	ps_lstclear(t_psnode **stack)
-{
-	t_psnode	*tmp;
-
-	if (!stack)
-		return ;
-	while (*stack)
-	{
-		tmp = *stack;
-		*stack = (*stack)-> next;
-		free(tmp);
-	}
-	*stack = NULL;
 }

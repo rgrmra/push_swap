@@ -6,7 +6,7 @@
 #    By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 22:24:23 by rde-mour          #+#    #+#              #
-#    Updated: 2024/02/01 20:42:23 by rde-mour         ###   ########.org.br    #
+#    Updated: 2024/02/03 16:46:40 by rde-mour         ###   ########.org.br    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,12 @@ RESET				= $(shell tput sgr0)
 NAME				= push_swap
 
 FILES				= push_swap.c \
-					  push_swap_utils.c
+					  push_swap_utils.c \
+					  error.c\
+					  swap.c \
+					  push.c \
+					  rotate.c \
+					  reverse.c
 
 SRCSDIR				= ./srcs
 OBJSDIR				= ./objs
@@ -57,6 +62,8 @@ $(NAME): 			$(LIBS) $(OBJS)
 					@echo "$(BLUE)Compiled $(NAME) successfully$(RESET)"
 
 $(LIBS):
+					@git submodule sync $(LIBFTXDIR)
+					@git submodule update --init --force --remote $(LIBFTXDIR)
 					@make -sC $(LIBFTXDIR)
 
 $(OBJSDIR)/%.o: 	$(SRCSDIR)/%.c
