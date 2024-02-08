@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/04 20:30:33 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/05 21:07:54 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ typedef struct s_stacks	t_stacks;
 struct s_stacks
 {
 	t_lnode	*a;
+	t_lnode	*la;
 	size_t	sa;
 	t_lnode	*b;
+	t_lnode	*lb;
 	size_t	sb;
 	int		min;
 	int		max;
+	int		small;
+	int		big;
 };
 
 enum e_moves
@@ -53,11 +57,13 @@ enum e_moves
 	NIL
 };
 
-enum e_order
-{
-	ASC,
-	DESC
-};
+int		bigest(t_lnode *stack);
+int		smallest(t_lnode *stack);
+void	sorting(t_stacks **stacks);
+void	check_sorting(t_stacks **stacks);
+void	sort_three(t_stacks **stacks);
+void	sort_four(t_stacks **stacks);
+void	sort_five(t_stacks **stacks);
 
 void	clear_stacks(t_stacks **stacks);
 void	ft_error(t_stacks **stacks);

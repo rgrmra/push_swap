@@ -6,7 +6,7 @@
 #    By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 22:24:23 by rde-mour          #+#    #+#              #
-#    Updated: 2024/02/03 16:46:40 by rde-mour         ###   ########.org.br    #
+#    Updated: 2024/02/05 20:24:20 by rde-mour         ###   ########.org.br    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ FILES				= push_swap.c \
 					  swap.c \
 					  push.c \
 					  rotate.c \
-					  reverse.c
+					  reverse.c \
+					  sorting.c \
+					  nodes.c
 
 SRCSDIR				= ./srcs
 OBJSDIR				= ./objs
