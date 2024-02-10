@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/05 21:05:56 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/10 13:38:01 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,23 @@ int	biggest(t_lnode *stack)
 		node = node->next;
 	}
 	return (biggest);
+}
+
+void	init_counters(t_counters *counters)
+{
+	counters->ra = 0;
+	counters->rb = 0;
+	counters->pa = 0;
+	counters->pb = 0;
+}
+
+void	set_pivots(t_lnode *stack, t_counters *counters)
+{
+	int	min;
+	int	max;
+
+	min = smallest(stack);
+	max = biggest(stack);
+	counters->big = (min + max) / 2;
+	counters->small = (min + counters->big) / 2;
 }

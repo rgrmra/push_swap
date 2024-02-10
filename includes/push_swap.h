@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 12:01:01 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/10 14:52:43 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,33 @@ struct s_stacks
 	t_lnode	*b;
 	t_lnode	*lb;
 	size_t	sb;
-	int		min;
-	int		max;
-	int		small;
-	int		big;
+};
+
+typedef struct s_counters t_counters;
+struct s_counters
+{
+	int	small;
+	int	big;
+	int	ra;
+	int	rb;
+	int	pa;
+	int	pb;
 };
 
 enum e_moves
 {
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR,
-	NIL
+	STACK_A,
+	STACK_B,
+	STACKS
 };
 
-int		bigest(t_lnode *stack);
+void	stack_a(int size, t_stacks **stacks, int *count);
+void	stack_b(int size, t_stacks **stacks, int *count);
+
+void	init_counters(t_counters *counters);
+void	set_pivots(t_lnode *stack, t_counters *counters);
 int		smallest(t_lnode *stack);
-void	sorting(t_stacks **stacks);
+int		biggest(t_lnode *stack);
 void	check_sorting(t_stacks **stacks);
 void	sort_three(t_stacks **stacks);
 void	sort_four(t_stacks **stacks);
@@ -86,5 +88,9 @@ void	rr(t_stacks **stacks);
 void	rra(t_stacks **stacks);
 void	rrb(t_stacks **stacks);
 void	rrr(t_stacks **stacks);
+
+// DELETE ----------------------------------------------------------------------
+void	print_stacks(t_stacks **stacks);
+// DELETE ----------------------------------------------------------------------
 
 #endif

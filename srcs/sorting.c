@@ -6,21 +6,11 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:19:19 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 12:01:21 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/10 14:26:42 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	sorting(t_stacks **stacks)
-{
-	t_stacks	**p;
-
-	p = stacks;
-	while ((*p)->b)
-	{
-	}
-}
 
 void	check_sorting(t_stacks **stacks)
 {
@@ -37,7 +27,7 @@ void	check_sorting(t_stacks **stacks)
 	}
 	if (node)
 		return ;
-	//ft_printf("OK\n");
+	print_stacks(stacks);
 	clear_stacks(stacks);
 	exit(EXIT_SUCCESS);
 }
@@ -46,12 +36,14 @@ void	sort_three(t_stacks **stacks)
 {
 	t_stacks	**p;
 	t_lnode		*pivot;
+	int			big;
 
 	p = stacks;
+	big = biggest((*p)->a);
 	pivot = llstlast((*p)->a);
-	if ((*p)->a->nbr == (*p)->max)
+	if ((*p)->a->nbr == big)
 		ra(stacks);
-	else if ((*p)->a->next->nbr == (*p)->max)
+	else if ((*p)->a->next->nbr == big)
 		rra(stacks);
 	if ((*p)->a->nbr > (*p)->a->next->nbr)
 		sa(stacks);
