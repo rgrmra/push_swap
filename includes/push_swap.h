@@ -6,17 +6,19 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/05 21:07:54 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/10 12:01:01 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
+
+# define PS_MIN -2147483648
+# define PS_MAX	+2147483647
 
 typedef struct s_lnode	t_lnode;
 struct s_lnode

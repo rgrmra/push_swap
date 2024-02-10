@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/05 21:07:26 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/10 11:59:20 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ static void	build_stack(t_stacks **stacks, char **argv)
 
 	while (*argv)
 	{
+		if (!(**argv))
+			ft_error(stacks);
 		check_number(stacks, *argv);
 		nbr = ft_atol(*argv++);
-		if (nbr < INT_MIN || nbr > INT_MAX)
+		if (nbr < PS_MIN || nbr > PS_MAX)
 			ft_error(stacks);
 		p = llstnew(nbr);
 		if (nbr < (*stacks)->min)
@@ -102,25 +104,26 @@ void	sort(t_stacks **stacks, int argc)
 		sort_five(stacks);
 	else
 		sorting(stacks);
+	check_sorting(stacks);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stacks	*stacks;
 
-	if (argc < 2)
-		ft_error(NULL);
+	//if (argc < 2)
+	//	return (EXIT_SUCCESS);
 	stacks = (t_stacks *) ft_calloc(1, sizeof(t_stacks));
 	if (!stacks)
 		return (EXIT_FAILURE);
 	stacks->a = NULL;
 	stacks->b = NULL;
-	stacks->min = INT_MAX;
-	stacks->max = INT_MIN;
+	stacks->min = PS_MAX;
+	stacks->max = PS_MIN;
 	build_stack(&stacks, &(*(argv + 1)));
 	sort(&stacks, argc - 1);
-	ft_printf("PRINT ORDER:\n");
-	print_stacks(&stacks);
+	//ft_printf("PRINT ORDER:\n");
+	//print_stacks(&stacks);
 	clear_stacks(&stacks);
 	return (EXIT_SUCCESS);
 }
