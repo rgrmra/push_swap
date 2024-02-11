@@ -6,13 +6,13 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:00:16 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 15:01:52 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/10 15:51:52 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_lnode **node)
+static void	swap_node(t_lnode **node)
 {
 	t_lnode	*first;
 
@@ -28,21 +28,16 @@ static void	swap(t_lnode **node)
 		first->next->prev = first;
 }
 
-void	sa(t_stacks **stacks)
+void	swap(t_stacks **stacks, int moves)
 {
-	swap(&(*stacks)->a);
-	ft_printf("sa\n");
-}
-
-void	sb(t_stacks **stacks)
-{
-	swap(&(*stacks)->b);
-	ft_printf("sb\n");
-}
-
-void	ss(t_stacks **stacks)
-{
-	swap(&(*stacks)->a);
-	swap(&(*stacks)->b);
-	ft_printf("ss\n");
+	if (moves == STACK_A || moves == STACKS)
+		swap_node(&(*stacks)->a);
+	if (moves == STACK_B || moves == STACKS)
+		swap_node(&(*stacks)->b);
+	if (moves == STACK_A)
+		ft_printf("sa\n");
+	else if (moves == STACK_B)
+		ft_printf("sb\n");
+	else if (moves == STACKS)
+		ft_printf("ss\n");
 }

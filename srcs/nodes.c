@@ -6,42 +6,109 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 13:38:01 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 20:55:18 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	smallest(t_lnode *stack)
+int	smaller(t_lnode *stack, int size)
 {
 	t_lnode	*node;
-	int		smallest;
+	int		small;
 
 	node = stack;
-	smallest = node->nbr;
-	while (node)
+	small = node->nbr;
+	while (node && size--)
 	{
-		if (node->nbr < smallest)
-			smallest = node->nbr;
+		if (node->nbr < small)
+			small = node->nbr;
 		node = node->next;
 	}
-	return (smallest);
+	return (small);
 }
 
-int	biggest(t_lnode *stack)
+int	bigger(t_lnode *stack, int size)
 {
 	t_lnode	*node;
-	int		biggest;
+	int		big;
 
 	node = stack;
-	biggest = node->nbr;
-	while (node)
+	big = node->nbr;
+	while (node && size--)
 	{
-		if (node->nbr > biggest)
-			biggest = node->nbr;
+		if (node->nbr > big)
+			big = node->nbr;
 		node = node->next;
 	}
-	return (biggest);
+	return (big);
+}
+/*
+static int	five_sort(int nbr[])
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 5;
+	while (--i > 0)
+	{
+		j = -1;
+		while (++j < i)
+		{
+			if (nbr[j] > nbr[j + 1])
+			{
+				tmp = nbr[j + 1];
+				nbr[j + 1] = nbr[j];
+				nbr[j] = tmp;
+			}
+		}
+	}
+	return (nbr[2]);
+}
+
+int	midst(t_lnode *stack)
+{
+	t_lnode	*node;
+	int		nbr[5];
+	int		i;
+
+	node = stack;
+	i = -1;
+	while (++i < 5)
+	{
+		nbr[i] = node->nbr;
+		if (node->next)
+			node = node->next;
+		else
+			break ;
+	}
+	while (node->prev)
+		node = node->prev;
+	return (five_sort(nbr));
+}*/
+
+int	middle(t_lnode *stack)
+{
+	t_lnode	*node;
+	int	i;
+	int	min;
+	int	max;
+
+	i = 0;
+	min = smaller(stack, 5);
+	max = bigger(stack, 5);
+	node = stack;
+	while (i--)
+	{
+		if (node->nbr > min && min < max)
+			min = node->nbr;
+		if (node->nbr < max && max > min)
+			max = node->nbr;
+		if (node->next)
+			node = node->next;
+	}
+	return (min);
 }
 
 void	init_counters(t_counters *counters)
@@ -52,13 +119,13 @@ void	init_counters(t_counters *counters)
 	counters->pb = 0;
 }
 
-void	set_pivots(t_lnode *stack, t_counters *counters)
+void	set_pivots(t_lnode *stack, t_counters *counters, int size)
 {
 	int	min;
 	int	max;
 
-	min = smallest(stack);
-	max = biggest(stack);
+	min = smaller(stack, size);
+	max = bigger(stack, size);
 	counters->big = (min + max) / 2;
 	counters->small = (min + counters->big) / 2;
 }

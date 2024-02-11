@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 14:06:18 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 20:47:26 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ static void	build_stack(t_stacks **stacks, char **argv)
 		llstadd_back(&(*stacks)->a, p);
 		check_duplicate(stacks, p);
 	}
-	(*stacks)->sa = llstsize((*stacks)->a);
-	(*stacks)->sb = 0;
+	(*stacks)->size = llstsize((*stacks)->a);
 }
 
 static void	sort(t_stacks **stacks, int argc)
@@ -65,16 +64,17 @@ static void	sort(t_stacks **stacks, int argc)
 
 	count = 0;
 	pivot = llstlast((*stacks)->a);
-	if (argc == 2 && (*stacks)->a->nbr > pivot->nbr)
-		sa(stacks);
-	if (argc == 3)
-		sort_three(stacks);
-	if (argc == 4)
-		sort_four(stacks);
-	if (argc == 5)
-		sort_five(stacks);
-	else
-		stack_a(llstsize((*stacks)->a), stacks, &count);
+//	if (argc == 2)
+//		sort_two(stacks, STACK_A);
+//	else if (argc == 3)
+//		sort_three(stacks, STACK_A);
+//	else if (argc == 4)
+//		sort_four(stacks, STACK_A);
+//	else if (argc == 5)
+//		sort_five(stacks);
+//	else
+	if (argc)
+	stack_a(llstsize((*stacks)->a), stacks, &count);
 	check_sorting(stacks);
 }
 
@@ -115,9 +115,10 @@ int	main(int argc, char **argv)
 	stacks->a = NULL;
 	stacks->b = NULL;
 	build_stack(&stacks, &(*(argv + 1)));
+	check_sorting(&stacks);
 	sort(&stacks, argc - 1);
-	ft_printf("PRINT ORDER:\n");
-	print_stacks(&stacks);
+//	ft_printf("PRINT ORDER:\n");
+//	print_stacks(&stacks);
 	clear_stacks(&stacks);
 	return (EXIT_SUCCESS);
 }

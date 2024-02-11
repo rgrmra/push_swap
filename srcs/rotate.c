@@ -6,13 +6,13 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 13:08:03 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/03 20:10:35 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/10 17:00:12 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate(t_lnode **node)
+static void	rotate_node(t_lnode **node)
 {
 	t_lnode	*last;
 
@@ -26,21 +26,20 @@ static void	rotate(t_lnode **node)
 	last->next->next = NULL;
 }
 
-void	ra(t_stacks	**stacks)
+void	rotate(t_stacks **stacks, int flag, int times)
 {
-	rotate(&(*stacks)->a);
-	ft_printf("ra\n");
-}
-
-void	rb(t_stacks	**stacks)
-{
-	rotate(&(*stacks)->b);
-	ft_printf("rb\n");
-}
-
-void	rr(t_stacks	**stacks)
-{
-	rotate(&(*stacks)->a);
-	rotate(&(*stacks)->b);
-	ft_printf("rr\n");
+	if (!times)
+		return ;
+	if (flag == STACK_A || flag == STACKS)
+		rotate_node(&(*stacks)->a);
+	if (flag == STACK_B || flag == STACKS)
+		rotate_node(&(*stacks)->b);
+	if (flag == STACK_A)
+		ft_printf("ra\n");
+	else if (flag == STACK_B)
+		ft_printf("rb\n");
+	else if (flag == STACKS)
+		ft_printf("rr\n");
+	if (--times)
+		rotate(stacks, flag, times);
 }

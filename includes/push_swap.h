@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 14:52:43 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 20:53:36 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ typedef struct s_stacks	t_stacks;
 struct s_stacks
 {
 	t_lnode	*a;
-	t_lnode	*la;
-	size_t	sa;
 	t_lnode	*b;
-	t_lnode	*lb;
-	size_t	sb;
+	size_t	size;
 };
 
 typedef struct s_counters t_counters;
@@ -60,14 +57,23 @@ enum e_moves
 void	stack_a(int size, t_stacks **stacks, int *count);
 void	stack_b(int size, t_stacks **stacks, int *count);
 
+void	two_handler(t_stacks **stacks, int flag);
+void	three_handler_a(int size, t_stacks **stacks);
+void	three_handler_b(int size, t_stacks **stacks);
+void	under_three_handler(int size, t_stacks **stacks, int flag);
+void	sort_five_handler(int size, t_stacks **stacks, int flag);
+
 void	init_counters(t_counters *counters);
-void	set_pivots(t_lnode *stack, t_counters *counters);
-int		smallest(t_lnode *stack);
-int		biggest(t_lnode *stack);
+void	set_pivots(t_lnode *stack, t_counters *counters, int size);
+int		smaller(t_lnode *stack, int size);
+int		middle(t_lnode *stack);
+int		bigger(t_lnode *stack, int size);
 void	check_sorting(t_stacks **stacks);
-void	sort_three(t_stacks **stacks);
-void	sort_four(t_stacks **stacks);
-void	sort_five(t_stacks **stacks);
+
+//void	sort_two(t_stacks **stacks, int flag);
+//void	sort_three(t_stacks **stacks, int flag);
+//void	sort_four(t_stacks **stacks, int flag);
+//void	sort_five(t_stacks **stacks);
 
 void	clear_stacks(t_stacks **stacks);
 void	ft_error(t_stacks **stacks);
@@ -77,17 +83,10 @@ void	llstclear(t_lnode **stack);
 t_lnode	*llstlast(t_lnode *stack);
 t_lnode	*llstnew(int nbr);
 size_t	llstsize(t_lnode *stack);
-void	sa(t_stacks **stacks);
-void	sb(t_stacks **stacks);
-void	ss(t_stacks **stacks);
-void	pa(t_stacks **stacks);
-void	pb(t_stacks **stacks);
-void	ra(t_stacks **stacks);
-void	rb(t_stacks **stacks);
-void	rr(t_stacks **stacks);
-void	rra(t_stacks **stacks);
-void	rrb(t_stacks **stacks);
-void	rrr(t_stacks **stacks);
+void	swap(t_stacks **stacks, int moves);
+void	rotate(t_stacks **stacks, int moves, int times);
+void	push(t_stacks **stacks, int moves, int times);
+void	reverse(t_stacks **stacks, int moves, int times);
 
 // DELETE ----------------------------------------------------------------------
 void	print_stacks(t_stacks **stacks);

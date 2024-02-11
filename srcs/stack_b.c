@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:00:34 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 15:15:05 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 20:25:02 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,31 @@
 
 static int	exceptions(t_stacks **stacks, int size)
 {
-	if (size <= 3)
-	{
-		sort_three(stacks);
-		return (0);
-	}
+	if (size > 5 || size == 4)
+		return (1);
 	else if (size == 5)
-	{
-		sort_five(stacks);
-		return (0);
-	}
-	if (!stacks)
-		return (0);
-	return (1);
+		sort_five_handler(5, stacks, STACK_B);
+	else 
+		under_three_handler(size, stacks, STACK_B);
+	return (0);
 }
+
 static void	push_rotate_b(t_stacks **stacks, t_counters *counters)
 {
-	if ((*stacks)->b->nbr > counters->small)
+	if ((*stacks)->b->nbr <= counters->small)
 	{
-		rb(stacks);
+		rotate(stacks, STACK_B, 1);
 		counters->rb++;
-		return ;
 	}
-	pa(stacks);
-	counters->pa++;
-	if ((*stacks)->a->nbr > counters->big)
+	else
 	{
-		ra(stacks);
-		counters->ra++;
+		push(stacks, STACK_A, 1);
+		counters->pa++;
+		if ((*stacks)->a->nbr <= counters->big)
+		{
+			rotate(stacks, STACK_A, 1);
+			counters->ra++;
+		}
 	}
 }
 
@@ -53,9 +50,9 @@ static void	back_to_orig_ra(t_stacks **stacks, t_counters *counters)
 	trrr = counters->rb;
 	trra = counters->ra - trrr;
 	while (trrr--)
-		rrr(stacks);
+		reverse(stacks, STACKS, 1);
 	while (trra--)
-		rra(stacks);
+		reverse(stacks, STACK_A, 1);
 }
 
 static void	back_to_orig_rb(t_stacks **stacks, t_counters *counters)
@@ -66,9 +63,9 @@ static void	back_to_orig_rb(t_stacks **stacks, t_counters *counters)
 	trrr = counters->ra;
 	trrb = counters->rb - trrr;
 	while (trrr--)
-		rrr(stacks);
+		reverse(stacks, STACKS, 1);
 	while (trrb--)
-		rrb(stacks);
+		reverse(stacks, STACK_B, 1);
 }
 
 void	stack_b(int size, t_stacks **stacks, int *count)
@@ -80,7 +77,7 @@ void	stack_b(int size, t_stacks **stacks, int *count)
 	if (!exceptions(stacks, size))
 		return ;
 	init_counters(&counters);
-	set_pivots((*stacks)->a, &counters);
+	set_pivots((*stacks)->b, &counters, size);
 	tmp = size;
 	while (tmp--)
 		push_rotate_b(stacks, &counters);

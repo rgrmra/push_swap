@@ -6,13 +6,13 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:28:08 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/04 20:36:43 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 20:11:05 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_lnode **orig, t_lnode **dest)
+static void	push_node(t_lnode **orig, t_lnode **dest)
 {
 	t_lnode	*node;
 
@@ -29,18 +29,20 @@ static void	push(t_lnode **orig, t_lnode **dest)
 	*dest = node;
 }
 
-void	pa(t_stacks **stacks)
+void	push(t_stacks **stacks, int flags, int times)
 {
-	push(&(*stacks)->b, &(*stacks)->a);
-	(*stacks)->sa++;
-	(*stacks)->sb--;
-	ft_printf("pa\n");
-}
-
-void	pb(t_stacks **stacks)
-{
-	push(&(*stacks)->a, &(*stacks)->b);
-	(*stacks)->sa--;
-	(*stacks)->sb++;
-	ft_printf("pb\n");
+	if (!times)
+		return ;
+	if (flags == STACK_A)
+	{
+		push_node(&(*stacks)->b, &(*stacks)->a);
+		ft_printf("pa\n");
+	}
+	else if (flags == STACK_B)
+	{
+		push_node(&(*stacks)->a, &(*stacks)->b);
+		ft_printf("pb\n");
+	}
+	if (--times)
+		push(stacks, flags, times);
 }

@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:19:19 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 14:26:42 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 20:54:09 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,57 @@ void	check_sorting(t_stacks **stacks)
 	clear_stacks(stacks);
 	exit(EXIT_SUCCESS);
 }
-
-void	sort_three(t_stacks **stacks)
+/*
+void	sort_two(t_stacks **stacks, int flag)
 {
-	t_stacks	**p;
-	t_lnode		*pivot;
-	int			big;
+	t_lnode **p;
 
-	p = stacks;
-	big = biggest((*p)->a);
-	pivot = llstlast((*p)->a);
-	if ((*p)->a->nbr == big)
-		ra(stacks);
-	else if ((*p)->a->next->nbr == big)
-		rra(stacks);
-	if ((*p)->a->nbr > (*p)->a->next->nbr)
-		sa(stacks);
+	if (flag == STACK_A)
+		p = &(*stacks)->a;
+	else
+		p = &(*stacks)->b;
+	if ((*p)->nbr > (*p)->next->nbr)
+		swap(stacks, flag);
 }
 
-void	sort_four(t_stacks **stacks)
+void	sort_three(t_stacks **stacks, int flag)
 {
-	t_stacks	**p;
-	t_lnode		*pivot;
+	t_lnode 	**p;
+	int			big;
+
+	if (flag == STACK_A)
+		p = &(*stacks)->a;
+	else
+		p = &(*stacks)->b;
+	big = biggest(*p, llstsize(*p));
+	if ((*p)->nbr == big)
+		rotate(stacks, flag, 1);
+	else if ((*p)->next->nbr == big)
+		reverse(stacks, flag, 1);
+	if ((*p)->nbr > (*p)->next->nbr)
+		swap(stacks, flag);
+}
+
+void	sort_four(t_stacks **stacks, int flag)
+{
+	t_lnode		**p;
 	int			small;
 
-	p = stacks;
-	small = smallest((*p)->a);
-	pivot = llstlast((*p)->a);
-	if ((*p)->a->next->nbr == small)
-		sa(stacks);
-	else if (pivot->prev->nbr == small)
-	{
-		ra(stacks);
-		ra(stacks);
-	}
-	else if (pivot->nbr == small)
-		rra(stacks);
+	if (flag == STACK_A)
+		p = &(*stacks)->a;
+	else
+		p = &(*stacks)->b;
+	small = smallest(*p, llstsize(*p));
+	if ((*p)->next->nbr == small)
+		swap(stacks, flag);
+	else if ((*p)->next->next->nbr == small)
+		rotate(stacks, flag, 2);
+	else if ((*p)->next->next->next->nbr == small)
+		reverse(stacks, flag, 1);
 	check_sorting(stacks);
-	pb(stacks);
-	sort_three(stacks);
-	pa(stacks);
+	push(stacks, STACK_B, 1);
+	sort_three(stacks, flag);
+	push(stacks, flag, 1);
 }
 
 void	sort_five(t_stacks **stacks)
@@ -80,24 +91,19 @@ void	sort_five(t_stacks **stacks)
 	int			small;
 
 	p = stacks;
-	small = smallest((*p)->a);
+	small = smallest((*p)->a, llstsize((*p)->a));
 	pivot = llstlast((*p)->a);
 	if ((*p)->a->next->nbr == small)
-		sa(stacks);
+		swap(stacks, STACK_A);
 	else if ((*p)->a->next->next->nbr == small)
-	{
-		ra(stacks);
-		ra(stacks);
-	}
+		rotate(stacks, STACK_A, 2);
 	else if ((*p)->a->next->next->next->nbr == small)
-	{
-		rra(stacks);
-		rra(stacks);
-	}
-	else if (pivot->prev->nbr == small)
-		rra(stacks);
+		reverse(stacks, STACK_A, 2);
+	else if (pivot->nbr == small)
+		reverse(stacks, STACK_A, 1);
 	check_sorting(stacks);
-	pb(stacks);
-	sort_four(stacks);
-	pa(stacks);
+	push(stacks, STACK_B, 1);
+	sort_four(stacks, STACK_A);
+	push(stacks, STACK_A, 1);
 }
+*/

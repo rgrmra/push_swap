@@ -6,7 +6,7 @@
 #    By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 22:24:23 by rde-mour          #+#    #+#              #
-#    Updated: 2024/02/10 14:07:38 by rde-mour         ###   ########.org.br    #
+#    Updated: 2024/02/11 17:34:38 by rde-mour         ###   ########.org.br    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,10 @@ FILES				= push_swap.c \
 					  sorting.c \
 					  nodes.c \
 					  stack_a.c \
-					  stack_b.c
+					  stack_b.c \
+					  handler_three_a.c \
+					  handler_three_b.c \
+					  handler_five.c
 
 SRCSDIR				= ./srcs
 OBJSDIR				= ./objs
