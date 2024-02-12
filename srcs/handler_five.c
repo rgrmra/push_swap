@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:58:38 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 20:57:26 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 21:01:36 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,17 @@ void	five_handler(t_stacks **stacks)
 	int	pb;
 	int	mid;
 
-	pb = 0;
+	pb = 2;
 	mid = middle((*stacks)->a);
-	while (1)
+	while (pb)
 	{
 		if ((*stacks)->a->nbr < mid)
 		{
 			push(stacks, STACK_B, 1);
-			pb++;
+			pb--;
 		}
 		else 
 			rotate(stacks, STACK_A, 1);
-		if (pb == 2)
-			break ;
 	}
 	three_handler_a(3, stacks);
 	two_handler(stacks, STACK_B);

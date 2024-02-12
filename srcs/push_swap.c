@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 20:47:26 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 21:21:48 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ int	main(int argc, char **argv)
 	build_stack(&stacks, &(*(argv + 1)));
 	check_sorting(&stacks);
 	sort(&stacks, argc - 1);
-//	ft_printf("PRINT ORDER:\n");
-//	print_stacks(&stacks);
+	ft_printf("PRINT ORDER:\n");
+	print_stacks(&stacks);
 	clear_stacks(&stacks);
 	return (EXIT_SUCCESS);
 }

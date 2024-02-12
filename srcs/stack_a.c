@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:00:34 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 20:28:58 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 22:30:19 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	exceptions(t_stacks **stacks, int size)
 		return (1);
 	else if (size == 5)
 		sort_five_handler(size, stacks, STACK_A);
-	else 
+	else
 		under_three_handler(size, stacks, STACK_A);
 	return (0);
 }
@@ -51,11 +51,19 @@ static void	back_to_orig_ra(t_stacks **stacks, t_counters *counters, int *count)
 	trra = counters->ra - trrr;
 	if ((*count) > 0)
 	{
-		reverse(stacks, STACKS, trrr);
-		reverse(stacks, STACK_A, trra);
+		//while (trrr--)
+		//	reverse(stacks, STACKS, 1);
+			reverse(stacks, STACKS, trrr);
+		//while (trra--)
+		//	reverse(stacks, STACK_A, 1);
+			reverse(stacks, STACK_A, trra);
 	}
 	else 
-		reverse(stacks, STACK_B, trrr);
+	{
+		//while (trrr--)
+		//	reverse(stacks, STACK_B, 1);
+			reverse(stacks, STACK_B, trrr);
+	}
 }
 
 static void	back_to_orig_rb(t_stacks **stacks, t_counters *counters, int *count)
@@ -67,11 +75,17 @@ static void	back_to_orig_rb(t_stacks **stacks, t_counters *counters, int *count)
 	trrb = counters->rb - trrr;
 	if ((*count) > 0)
 	{
-		reverse(stacks, STACKS, trrr);
-		reverse(stacks, STACK_B, trrb);
+		while (trrr--)
+			reverse(stacks, STACKS, 1);
+		while (trrb--)
+			reverse(stacks, STACK_B, 1);
 	}
 	else
-		reverse(stacks, STACK_B, counters->rb);
+	{
+		trrr = counters->rb;
+		while (trrr--)
+			reverse(stacks, STACK_B, 1);
+	}
 }
 
 void	stack_a(int size, t_stacks **stacks, int *count)

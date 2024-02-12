@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 17:31:04 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 20:55:54 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 21:10:10 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	three_top(t_stacks **stacks, int max)
 {
-	if ((*stacks)->size == 3)
+	if (llstsize((*stacks)->b) == 3)
 	{
 		rotate(stacks, STACK_B, 1);
 		if ((*stacks)->b->next->nbr == max)
 			swap(stacks, STACK_B);
 	}
-	else 
+	else
 	{
 		swap(stacks, STACK_B);
 		rotate(stacks, STACK_B, 1);
@@ -33,7 +33,7 @@ static void	three_top(t_stacks **stacks, int max)
 
 static void	three_middle(t_stacks **stacks, int max)
 {
-	if ((*stacks)->size == 3)
+	if (llstsize((*stacks)->b) == 3)
 	{
 		reverse(stacks, STACK_B, 1);
 		if ((*stacks)->b->next->nbr == max)

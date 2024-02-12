@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 17:31:04 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 20:55:39 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 21:09:20 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	two_handler(t_stacks **stacks, int flag)
 
 static void	three_top(t_stacks **stacks, int max)
 {
-	if ((*stacks)->size == 3)
+	if (llstsize((*stacks)->a) == 3)
 	{
 		if ((*stacks)->a->next->nbr == max)
 		{
@@ -50,7 +50,7 @@ static void	three_top(t_stacks **stacks, int max)
 
 static void	three_middle(t_stacks **stacks, int max)
 {
-	if ((*stacks)->size == 3)
+	if (llstsize((*stacks)->a) == 3)
 	{
 		if ((*stacks)->a->next->next->nbr == max)
 			swap(stacks, STACK_A);
@@ -71,7 +71,7 @@ static void	three_middle(t_stacks **stacks, int max)
 
 static void	three_bottom(t_stacks **stacks, int max)
 {
-	if ((*stacks)->size == 3)
+	if (llstsize((*stacks)->a) == 3)
 	{
 		if ((*stacks)->a->nbr == max)
 			swap(stacks, STACK_A);

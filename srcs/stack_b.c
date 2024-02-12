@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:00:34 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 20:25:02 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/11 22:28:34 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	exceptions(t_stacks **stacks, int size)
 	if (size > 5 || size == 4)
 		return (1);
 	else if (size == 5)
-		sort_five_handler(5, stacks, STACK_B);
-	else 
+		sort_five_handler(size, stacks, STACK_B);
+	else
 		under_three_handler(size, stacks, STACK_B);
 	return (0);
 }
@@ -29,16 +29,14 @@ static void	push_rotate_b(t_stacks **stacks, t_counters *counters)
 	{
 		rotate(stacks, STACK_B, 1);
 		counters->rb++;
+		return ;
 	}
-	else
+	push(stacks, STACK_A, 1);
+	counters->pa++;
+	if ((*stacks)->a->nbr <= counters->big)
 	{
-		push(stacks, STACK_A, 1);
-		counters->pa++;
-		if ((*stacks)->a->nbr <= counters->big)
-		{
-			rotate(stacks, STACK_A, 1);
-			counters->ra++;
-		}
+		rotate(stacks, STACK_A, 1);
+		counters->ra++;
 	}
 }
 
@@ -49,10 +47,12 @@ static void	back_to_orig_ra(t_stacks **stacks, t_counters *counters)
 
 	trrr = counters->rb;
 	trra = counters->ra - trrr;
-	while (trrr--)
-		reverse(stacks, STACKS, 1);
-	while (trra--)
-		reverse(stacks, STACK_A, 1);
+	///while (trrr--)
+	//	reverse(stacks, STACKS, 1);
+	reverse(stacks, STACKS, trrr);
+	//while (trra--)
+	//	reverse(stacks, STACK_A, 1);
+	reverse(stacks, STACK_A, trra);
 }
 
 static void	back_to_orig_rb(t_stacks **stacks, t_counters *counters)
@@ -62,10 +62,12 @@ static void	back_to_orig_rb(t_stacks **stacks, t_counters *counters)
 
 	trrr = counters->ra;
 	trrb = counters->rb - trrr;
-	while (trrr--)
-		reverse(stacks, STACKS, 1);
-	while (trrb--)
-		reverse(stacks, STACK_B, 1);
+	//while (trrr--)
+	//	reverse(stacks, STACKS, 1);
+		reverse(stacks, STACKS, trrr);
+	//while (trrb--)
+	//	reverse(stacks, STACK_B, 1);
+		reverse(stacks, STACK_B, trrb);
 }
 
 void	stack_b(int size, t_stacks **stacks, int *count)
