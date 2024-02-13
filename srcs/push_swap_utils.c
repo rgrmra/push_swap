@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:49:35 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/04 19:51:43 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/13 17:11:50 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ size_t	llstsize(t_lnode *stack)
 		return (0);
 	size = 0;
 	node = stack;
-	while (node)
-	{
-		size++;
+	while (node && ++size)
 		node = node->next;
-	}
 	return (size);
 }
 

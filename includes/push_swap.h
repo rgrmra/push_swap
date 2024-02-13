@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 20:53:36 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/13 19:45:37 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ typedef struct s_stacks	t_stacks;
 struct s_stacks
 {
 	t_lnode	*a;
+	size_t	size_a;
 	t_lnode	*b;
-	size_t	size;
+	size_t	size_b;
 };
 
 typedef struct s_counters t_counters;
@@ -43,6 +44,7 @@ struct s_counters
 	int	big;
 	int	ra;
 	int	rb;
+	int	rr;
 	int	pa;
 	int	pb;
 };
@@ -54,26 +56,33 @@ enum e_moves
 	STACKS
 };
 
+int		exceptions(t_stacks **stacks, int size, int flag);
 void	stack_a(int size, t_stacks **stacks, int *count);
 void	stack_b(int size, t_stacks **stacks, int *count);
 
 void	two_handler(t_stacks **stacks, int flag);
 void	three_handler_a(int size, t_stacks **stacks);
 void	three_handler_b(int size, t_stacks **stacks);
+void	sort_four_handler_a(t_stacks **stacks, int size);
+void	sort_four_handler_b(t_stacks **stacks, int size);
+void	four_handler(t_stacks **stacks);
+void	five_handler(t_stacks **stacks);
 void	under_three_handler(int size, t_stacks **stacks, int flag);
+void	sort_four_handler(int size, t_stacks **stacks, int flag);
 void	sort_five_handler(int size, t_stacks **stacks, int flag);
+void	sort_seven_handler(int size, t_stacks **stacks, int flag);
+void	sort_eight_handler(int size, t_stacks **stacks, int flag);
+void	sort_ten_handler(int size, t_stacks **stacks, int flag);
 
-void	init_counters(t_counters *counters);
-void	set_pivots(t_lnode *stack, t_counters *counters, int size);
+void	init_counters(t_lnode *stack, t_counters *counters, int size);
 int		smaller(t_lnode *stack, int size);
-int		middle(t_lnode *stack);
+int		middler(t_lnode *stack, int size);
 int		bigger(t_lnode *stack, int size);
 void	check_sorting(t_stacks **stacks);
 
-//void	sort_two(t_stacks **stacks, int flag);
-//void	sort_three(t_stacks **stacks, int flag);
-//void	sort_four(t_stacks **stacks, int flag);
-//void	sort_five(t_stacks **stacks);
+void	sort_three(t_stacks **stacks);
+void	sort_four(t_stacks **stacks);
+void	sort_five(t_stacks **stacks);
 
 void	clear_stacks(t_stacks **stacks);
 void	ft_error(t_stacks **stacks);

@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:00:16 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 15:51:52 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/12 17:52:28 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,22 @@ static void	swap_node(t_lnode **node)
 		first->next->prev = first;
 }
 
-void	swap(t_stacks **stacks, int moves)
+void	swap(t_stacks **stacks, int flag)
 {
-	if (moves == STACK_A || moves == STACKS)
+	if (flag == STACK_A && (*stacks)->size_b > 1
+		&& (*stacks)->b->nbr < (*stacks)->b->next->nbr)
+		flag = STACKS;
+	else if (flag == STACK_B && (*stacks)->size_a > 1
+		&& (*stacks)->a->nbr > (*stacks)->a->next->nbr)
+		flag = STACKS;
+	if (flag == STACK_A || flag == STACKS)
 		swap_node(&(*stacks)->a);
-	if (moves == STACK_B || moves == STACKS)
+	if (flag == STACK_B || flag == STACKS)
 		swap_node(&(*stacks)->b);
-	if (moves == STACK_A)
+	if (flag == STACK_A)
 		ft_printf("sa\n");
-	else if (moves == STACK_B)
+	else if (flag == STACK_B)
 		ft_printf("sb\n");
-	else if (moves == STACKS)
+	else if (flag == STACKS)
 		ft_printf("ss\n");
 }

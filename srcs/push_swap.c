@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 21:21:48 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/13 19:26:44 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,25 @@ static void	build_stack(t_stacks **stacks, char **argv)
 		llstadd_back(&(*stacks)->a, p);
 		check_duplicate(stacks, p);
 	}
-	(*stacks)->size = llstsize((*stacks)->a);
+	(*stacks)->size_a = llstsize((*stacks)->a);
+	(*stacks)->size_b = 0;
 }
 
 static void	sort(t_stacks **stacks, int argc)
 {
 	int			count;
-	t_lnode		*pivot;
 
 	count = 0;
-	pivot = llstlast((*stacks)->a);
-//	if (argc == 2)
-//		sort_two(stacks, STACK_A);
-//	else if (argc == 3)
-//		sort_three(stacks, STACK_A);
-//	else if (argc == 4)
-//		sort_four(stacks, STACK_A);
-//	else if (argc == 5)
-//		sort_five(stacks);
-//	else
-	if (argc)
-	stack_a(llstsize((*stacks)->a), stacks, &count);
-	check_sorting(stacks);
+	if (argc == 2)
+		swap(stacks, STACK_A);
+	else if (argc == 3)
+		sort_three(stacks);
+	else if (argc == 4)
+		sort_four(stacks);
+	else if (argc == 5)
+		sort_five(stacks);
+	else
+		stack_a((*stacks)->size_a, stacks, &count);
 }
 
 // TEMPORARY FUNCTIONS ---------------------------------------------------------
@@ -105,6 +102,7 @@ void	print_stacks(t_stacks **stacks)
 
 int	main(int argc, char **argv)
 {
+	int			count;
 	t_stacks	*stacks;
 
 	if (argc < 2)
@@ -114,11 +112,12 @@ int	main(int argc, char **argv)
 		ft_error(&stacks);
 	stacks->a = NULL;
 	stacks->b = NULL;
-	build_stack(&stacks, &(*(argv + 1)));
+	build_stack(&stacks, ++argv);
 	check_sorting(&stacks);
 	sort(&stacks, argc - 1);
-	ft_printf("PRINT ORDER:\n");
-	print_stacks(&stacks);
+	count = 0;
+	//ft_printf("PRINT ORDER:\n");
+	//print_stacks(&stacks);
 	clear_stacks(&stacks);
 	return (EXIT_SUCCESS);
 }

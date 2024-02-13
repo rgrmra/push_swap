@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/11 22:21:18 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/13 17:54:02 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	bigger(t_lnode *stack, int size)
 	return (big);
 }
 
-static int	sort_middle(int nbr[])
+static int	sort_middle(int nbr[], int size)
 {
 	int	i;
 	int	j;
 	int	tmp;
 
-	i = 5;
+	i = size;
 	while (--i > 0)
 	{
 		j = -1;
@@ -66,18 +66,18 @@ static int	sort_middle(int nbr[])
 			}
 		}
 	}
-	return (*(nbr + 2));
+	return (*(nbr + (size / 2)));
 }
 
-int	middle(t_lnode *stack)
+int	middler(t_lnode *stack, int size)
 {
 	t_lnode	*node;
-	int		nbr[5];
+	int		nbr[10];
 	int		i;
 
 	i = 0;
 	node = stack;
-	while (i < 5)
+	while (i < size)
 	{
 		*(nbr + i++) = node->nbr;
 		if (node->next)
@@ -85,18 +85,10 @@ int	middle(t_lnode *stack)
 		else
 			break ;
 	}
-	return (sort_middle(nbr));
+	return (sort_middle(nbr, size));
 }
 
-void	init_counters(t_counters *counters)
-{
-	counters->ra = 0;
-	counters->rb = 0;
-	counters->pa = 0;
-	counters->pb = 0;
-}
-
-void	set_pivots(t_lnode *stack, t_counters *counters, int size)
+void	init_counters(t_lnode *stack, t_counters *counters, int size)
 {
 	int	min;
 	int	max;
@@ -105,4 +97,9 @@ void	set_pivots(t_lnode *stack, t_counters *counters, int size)
 	max = bigger(stack, size);
 	counters->big = (min + max) / 2;
 	counters->small = (min + counters->big) / 2;
+	counters->ra = 0;
+	counters->rb = 0;
+	counters->rr = 0;
+	counters->pa = 0;
+	counters->pb = 0;
 }

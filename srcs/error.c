@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 16:42:47 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/04 19:27:32 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/13 17:10:04 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	llstclear(t_lnode **stack)
 	while (*stack)
 	{
 		tmp = *stack;
-		*stack = (*stack)-> next;
+		*stack = (*stack)->next;
 		free(tmp);
 	}
 	*stack = NULL;
@@ -29,10 +29,10 @@ void	llstclear(t_lnode **stack)
 
 void	clear_stacks(t_stacks **stacks)
 {
-	if (stacks && (*stacks)-> a)
-		llstclear(&((*stacks)-> a));
-	if (stacks && (*stacks)-> b)
-		llstclear(&((*stacks)-> b));
+	if (stacks && (*stacks)->a)
+		llstclear(&((*stacks)->a));
+	if (stacks && (*stacks)->b)
+		llstclear(&((*stacks)->b));
 	if (stacks)
 		free(*stacks);
 }
