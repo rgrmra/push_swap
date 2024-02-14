@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/13 19:45:37 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/13 21:51:15 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,11 @@ struct s_counters
 	int	big;
 	int	ra;
 	int	rb;
-	int	rr;
 	int	pa;
 	int	pb;
 };
 
-enum e_moves
+enum e_flags
 {
 	STACK_A,
 	STACK_B,
@@ -63,16 +62,11 @@ void	stack_b(int size, t_stacks **stacks, int *count);
 void	two_handler(t_stacks **stacks, int flag);
 void	three_handler_a(int size, t_stacks **stacks);
 void	three_handler_b(int size, t_stacks **stacks);
-void	sort_four_handler_a(t_stacks **stacks, int size);
-void	sort_four_handler_b(t_stacks **stacks, int size);
 void	four_handler(t_stacks **stacks);
 void	five_handler(t_stacks **stacks);
 void	under_three_handler(int size, t_stacks **stacks, int flag);
-void	sort_four_handler(int size, t_stacks **stacks, int flag);
-void	sort_five_handler(int size, t_stacks **stacks, int flag);
-void	sort_seven_handler(int size, t_stacks **stacks, int flag);
-void	sort_eight_handler(int size, t_stacks **stacks, int flag);
-void	sort_ten_handler(int size, t_stacks **stacks, int flag);
+void	sort_four_handler(t_stacks **stacks, int flag);
+void	sort_five_handler(t_stacks **stacks, int flag);
 
 void	init_counters(t_lnode *stack, t_counters *counters, int size);
 int		smaller(t_lnode *stack, int size);
@@ -92,6 +86,7 @@ void	llstclear(t_lnode **stack);
 t_lnode	*llstlast(t_lnode *stack);
 t_lnode	*llstnew(int nbr);
 size_t	llstsize(t_lnode *stack);
+
 void	swap(t_stacks **stacks, int moves);
 void	rotate(t_stacks **stacks, int moves, int times);
 void	push(t_stacks **stacks, int moves, int times);

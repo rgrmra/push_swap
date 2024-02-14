@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/13 17:54:02 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/13 21:50:53 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	bigger(t_lnode *stack, int size)
 	return (big);
 }
 
-static int	sort_middle(int nbr[], int size)
+static int	sort_middler(int nbr[], int size)
 {
 	int	i;
 	int	j;
@@ -72,7 +72,7 @@ static int	sort_middle(int nbr[], int size)
 int	middler(t_lnode *stack, int size)
 {
 	t_lnode	*node;
-	int		nbr[10];
+	int		nbr[5];
 	int		i;
 
 	i = 0;
@@ -85,8 +85,9 @@ int	middler(t_lnode *stack, int size)
 		else
 			break ;
 	}
-	return (sort_middle(nbr, size));
+	return (sort_middler(nbr, size));
 }
+
 
 void	init_counters(t_lnode *stack, t_counters *counters, int size)
 {
@@ -99,7 +100,6 @@ void	init_counters(t_lnode *stack, t_counters *counters, int size)
 	counters->small = (min + counters->big) / 2;
 	counters->ra = 0;
 	counters->rb = 0;
-	counters->rr = 0;
 	counters->pa = 0;
 	counters->pb = 0;
 }
