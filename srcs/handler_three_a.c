@@ -6,23 +6,11 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 17:31:04 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/13 19:58:06 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/14 18:04:37 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	two_handler(t_stacks **stacks, int flag)
-{
-	if (flag == STACK_B)
-	{
-		if ((*stacks)->b->nbr < (*stacks)->b->next->nbr)
-			swap(stacks, STACK_B);
-		push(stacks, STACK_A, 2);
-	}
-	else if ((*stacks)->a->nbr > (*stacks)->a->next->nbr)
-		swap(stacks, STACK_A);
-}
 
 static void	min_top(t_stacks **stacks, int max)
 {
@@ -70,19 +58,4 @@ void	three_handler_a(int size, t_stacks **stacks)
 		min_middle(stacks, max);
 	else if ((*stacks)->a->next->next->nbr == min)
 		min_bottom(stacks, max);
-}
-
-void	under_three_handler(int size, t_stacks **stacks, int flag)
-{
-	if (size == 3)
-	{
-		if (flag == STACK_A)
-			three_handler_a(size, stacks);
-		else
-			three_handler_b(size, stacks);
-	}
-	else if (size == 2)
-		two_handler(stacks, flag);
-	else if (size == 1 && flag == STACK_B)
-		push(stacks, STACK_A, 1);
 }

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handler_five.c                                     :+:      :+:    :+:   */
+/*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:58:38 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/13 21:45:32 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/14 18:58:31 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_five_handler_a(t_stacks **stacks)
+static void	sort_stack_a(t_stacks **stacks, int size)
 {
 	int	mid;
 	int	pushs;
-	int rotates;
+	int	rotates;
 
-	pushs = 2;
+	pushs = (size / 2);
 	rotates = 0;
-	mid = middler((*stacks)->a, 5);
+	mid = middler((*stacks)->a, size);
 	while (pushs)
 	{
 		if ((*stacks)->a->nbr < mid && pushs--)
@@ -31,15 +31,15 @@ void	sort_five_handler_a(t_stacks **stacks)
 	reverse(stacks, STACK_A, rotates);
 }
 
-void	sort_five_handler_b(t_stacks **stacks)
+static void	sort_stack_b(t_stacks **stacks, int size)
 {
 	int	mid;
 	int	pushs;
-	int rotates;
+	int	rotates;
 
-	pushs = 3;
+	pushs = (size / 2) + (size % 2);
 	rotates = 0;
-	mid = middler((*stacks)->b, 5);
+	mid = middler((*stacks)->b, size);
 	while (pushs)
 	{
 		if ((*stacks)->b->nbr >= mid && pushs--)
@@ -50,12 +50,34 @@ void	sort_five_handler_b(t_stacks **stacks)
 	reverse(stacks, STACK_B, rotates);
 }
 
+void	sort_four_handler(t_stacks **stacks, int flag)
+{
+	if (flag == STACK_A)
+		sort_stack_a(stacks, 4);
+	else
+		sort_stack_b(stacks, 4);
+	two_handler(stacks, STACK_A);
+	two_handler(stacks, STACK_B);
+}
+
 void	sort_five_handler(t_stacks **stacks, int flag)
 {
 	if (flag == STACK_A)
-		sort_five_handler_a(stacks);
+		sort_stack_a(stacks, 5);
 	else
-		sort_five_handler_b(stacks);
+		sort_stack_b(stacks, 5);
 	three_handler_a(3, stacks);
 	two_handler(stacks, STACK_B);
+}
+
+void	two_handler(t_stacks **stacks, int flag)
+{
+	if (flag == STACK_B)
+	{
+		if ((*stacks)->b->nbr < (*stacks)->b->next->nbr)
+			swap(stacks, STACK_B);
+		push(stacks, STACK_A, 2);
+	}
+	else if ((*stacks)->a->nbr > (*stacks)->a->next->nbr)
+		swap(stacks, STACK_A);
 }

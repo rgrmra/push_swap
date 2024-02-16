@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:00:16 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/12 17:52:28 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/14 21:09:46 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static void	swap_node(t_lnode **node)
 
 void	swap(t_stacks **stacks, int flag)
 {
+	if ((flag == STACK_A && (*stacks)->size_a < 2)
+		|| (flag == STACK_B && (*stacks)->size_b < 2))
+		return;
 	if (flag == STACK_A && (*stacks)->size_b > 1
 		&& (*stacks)->b->nbr < (*stacks)->b->next->nbr)
 		flag = STACKS;

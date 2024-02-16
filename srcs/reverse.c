@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 13:24:40 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/10 17:00:06 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/14 21:16:55 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static void	reverse_node(t_lnode	**node)
 void	reverse(t_stacks **stacks, int flags, int times)
 {
 	if (!times)
+		return ;
+	if ((flags == STACK_A && (*stacks)->a == 0)
+		|| (flags == STACK_B && (*stacks)->b == 0))
 		return ;
 	if (flags == STACK_A || flags == STACKS)
 		reverse_node(&(*stacks)->a);

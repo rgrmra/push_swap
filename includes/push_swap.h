@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/13 21:51:15 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/14 19:17:00 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define PS_MIN -2147483648
 # define PS_MAX	+2147483647
 
-typedef struct s_lnode	t_lnode;
+typedef struct s_lnode		t_lnode;
 struct s_lnode
 {
 	int		nbr;
@@ -28,7 +28,7 @@ struct s_lnode
 	t_lnode	*prev;
 };
 
-typedef struct s_stacks	t_stacks;
+typedef struct s_stacks		t_stacks;
 struct s_stacks
 {
 	t_lnode	*a;
@@ -37,13 +37,14 @@ struct s_stacks
 	size_t	size_b;
 };
 
-typedef struct s_counters t_counters;
+typedef struct s_counters	t_counters;
 struct s_counters
 {
 	int	small;
 	int	big;
 	int	ra;
 	int	rb;
+	int	rr;
 	int	pa;
 	int	pb;
 };
@@ -62,8 +63,6 @@ void	stack_b(int size, t_stacks **stacks, int *count);
 void	two_handler(t_stacks **stacks, int flag);
 void	three_handler_a(int size, t_stacks **stacks);
 void	three_handler_b(int size, t_stacks **stacks);
-void	four_handler(t_stacks **stacks);
-void	five_handler(t_stacks **stacks);
 void	under_three_handler(int size, t_stacks **stacks, int flag);
 void	sort_four_handler(t_stacks **stacks, int flag);
 void	sort_five_handler(t_stacks **stacks, int flag);
@@ -82,7 +81,6 @@ void	clear_stacks(t_stacks **stacks);
 void	ft_error(t_stacks **stacks);
 void	llstadd_back(t_lnode **stack, t_lnode *new);
 void	llstadd_front(t_lnode **stack, t_lnode *new);
-void	llstclear(t_lnode **stack);
 t_lnode	*llstlast(t_lnode *stack);
 t_lnode	*llstnew(int nbr);
 size_t	llstsize(t_lnode *stack);

@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:00:34 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/13 21:47:38 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/14 21:01:45 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,17 @@ int	exceptions(t_stacks **stacks, int size, int flag)
 		sort_five_handler(stacks, flag);
 	else if (size == 4)
 		sort_four_handler(stacks, flag);
-	else
-		under_three_handler(size, stacks, flag);
+	else if (size == 3)
+	{
+		if (flag == STACK_A)
+			three_handler_a(size, stacks);
+		else
+			three_handler_b(size, stacks);
+	}
+	else if (size == 2)
+		two_handler(stacks, flag);
+	else if (size == 1 && flag == STACK_B)
+		push(stacks, STACK_A, 1);
 	return (0);
 }
 
@@ -37,7 +46,7 @@ static void	divide_stack_a(t_stacks **stacks, t_counters *counters, int *times)
 		counters->ra++;
 		counters->rb++;
 		(*times)--;
-		return;
+		return ;
 	}
 	if ((*stacks)->a->nbr > counters->big)
 	{

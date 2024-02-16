@@ -6,7 +6,7 @@
 #    By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 22:24:23 by rde-mour          #+#    #+#              #
-#    Updated: 2024/02/11 17:34:38 by rde-mour         ###   ########.org.br    #
+#    Updated: 2024/02/14 19:37:58 by rde-mour         ###   ########.org.br    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ MAGENT				= $(shell tput setaf 5)
 RESET				= $(shell tput sgr0)
 
 NAME				= push_swap
+NAME_BONUS			= checker
 
 FILES				= push_swap.c \
 					  push_swap_utils.c \
@@ -32,7 +33,9 @@ FILES				= push_swap.c \
 					  stack_b.c \
 					  handler_three_a.c \
 					  handler_three_b.c \
-					  handler_five.c
+					  handler.c
+
+FILES_BONUS			=
 
 SRCSDIR				= ./srcs
 OBJSDIR				= ./objs
@@ -42,8 +45,8 @@ LIBS				= $(LIBFTXDIR)/libftx.a
 
 SRCS				= $(FILES:%.c=$(SRCSDIR)/%.c)
 OBJS				= $(FILES:%.c=$(OBJSDIR)/%.o)
-SRCS_BONUS			= $(FILES:%.c=$(SRCsDIR)/bonus/%_bonus.c)
-OBJS_BONUS			= $(FILES:%.c=$(OBJSDIR)/bonus/%_bonus.o)
+SRCS_BONUS			= $(FILES_BONUS:%.c=$(SRCsDIR)/bonus/%_bonus.c)
+OBJS_BONUS			= $(FILES_BONUS:%.c=$(OBJSDIR)/bonus/%_bonus.o)
 
 DELETE				= $(OBJS_BONUS)
 
@@ -55,7 +58,8 @@ CFLAGS				= -Wall -Wextra -Werror -g3
 MESSAGE				= mandatory
 
 ifdef				WITH_BONUS
-					DELETE := $(OBJS)
+					NAME := $(NAME_BONUS)
+#					DELETE := $(OBJS)
 					SRCS := $(SRCS_BONUS)
 					OBJS := $(OBJS_BONUS)
 					MESSAGE	= bonus
@@ -86,6 +90,7 @@ clean:
 					@rm -rf $(OBJSDIR)
 
 fclean:				clean
+					@make fclean -sC $(LIBFTXDIR)
 					@echo "$(RED)Removing$(RESET) $(NAME)"
 					@rm -rf $(NAME)
 

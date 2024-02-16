@@ -6,13 +6,13 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 16:42:47 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/13 17:10:04 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/14 17:31:00 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	llstclear(t_lnode **stack)
+static void	llstclear(t_lnode **stack)
 {
 	t_lnode	*tmp;
 

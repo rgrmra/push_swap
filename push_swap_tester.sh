@@ -6,12 +6,12 @@ if [ $1 -a !SIZE ];
 then
 	SIZE=$1;
 else
-	SIZE=0
+	SIZE=0;
 fi
 
 export VAR="$(seq -2500 2500 | shuf -n $SIZE | tr '\n' ' ')"
 
-echo -e "\n" > tmp.log
+echo -ne "\n" > tmp.log
 ./push_swap $VAR >> tmp.log
 
 print() {
@@ -29,7 +29,7 @@ RR=$(cat tmp.log | grep -zPo '\nrr\n'| wc -w)
 RRA=$(cat tmp.log | grep -zPo '\nrra\n'| wc -w)
 RRB=$(cat tmp.log | grep -zPo '\nrrb\n'| wc -w)
 RRR=$(cat tmp.log | grep -zPo '\nrrr\n'| wc -w)
-TOTAL=$(($(cat tmp.log | wc -l) - 2))
+TOTAL=$(($(cat tmp.log | wc -l) - 1))
 
 if [ $SA -gt 0 ];
 then
@@ -92,6 +92,13 @@ print 'SIZE' $SIZE
 
 print 'MOVES' $TOTAL
 
+if [ -z "$MEDIAN" ];
+then
+	export MEDIAN=$TOTAL
+else
+	export MEDIAN=$(expr $TOTAL + $MEDIAN)
+fi
+
 STATUS=$(./push_swap $VAR | ./checker_linux $VAR)
 
 echo -ne "\033[1mSTATUS: "
@@ -116,16 +123,24 @@ elif [ $SIZE -lt 501 ];
 then
 	if [ $TOTAL -lt 5501 ]
 	then
-		echo -e "\033[1;92mSUCCESS\033[1m\n";
+		echo -e "\033[1;92mSUCCESS\033[1m";
 	else
-		echo -e "\033[1;91mFAIL\033[1m\n";
+		echo -e "\033[1;91mFAIL\033[1m";
 		echo -e $VAR >> fail.log;
 	fi
 else
 	exit
 fi
 
-SIZE=100
+if [ -z "$TIMES" ];
+then
+	export TIMES=1;
+else
+	export TIMES=$(expr $TIMES + 1)
+fi
+
+print 'MEDIAN' $(expr $MEDIAN / $TIMES)
 
 sleep 1
-./push_swap_tester.sh $SIZE
+
+./push_swap_tester.sh $SIZE $MEDIAN $TIMES
