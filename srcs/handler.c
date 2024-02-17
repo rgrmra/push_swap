@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:58:38 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/14 18:58:31 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/16 21:49:57 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ static void	sort_stack_a(t_stacks **stacks, int size)
 	while (pushs)
 	{
 		if ((*stacks)->a->nbr < mid && pushs--)
+		{
 			push(stacks, STACK_B, 1);
+			if ((*stacks)->a->next->nbr < mid)
+				swap(stacks, STACK_A);
+		}
 		else if (++rotates)
 			rotate(stacks, STACK_A, 1);
 	}
@@ -43,7 +47,11 @@ static void	sort_stack_b(t_stacks **stacks, int size)
 	while (pushs)
 	{
 		if ((*stacks)->b->nbr >= mid && pushs--)
+		{
 			push(stacks, STACK_A, 1);
+			if ((*stacks)->b->next->nbr >= mid)
+				swap(stacks, STACK_B);
+		}
 		else if (++rotates)
 			rotate(stacks, STACK_B, 1);
 	}

@@ -9,7 +9,7 @@ else
 	SIZE=0;
 fi
 
-export VAR="$(seq -2500 2500 | shuf -n $SIZE | tr '\n' ' ')"
+export VAR="$(seq -2500 2500 | shuf -i 1-$SIZE | tr '\n' ' ')"
 
 echo -ne "\n" > tmp.log
 ./push_swap $VAR >> tmp.log
@@ -18,18 +18,18 @@ print() {
 	echo -ne "\033[1;97m$1: \033[1;93m$2  \033[1;m"
 }
 
-SA=$(cat tmp.log | grep -zPo '\nsa\n'| wc -w)
-SB=$(cat tmp.log | grep -zPo '\nsb\n'| wc -w)
-SS=$(cat tmp.log | grep -zPo '\nss\n'| wc -w)
-PA=$(cat tmp.log | grep -zPo '\npa\n'| wc -w)
-PB=$(cat tmp.log | grep -zPo '\npb\n'| wc -w)
-RA=$(cat tmp.log | grep -zPo '\nra\n'| wc -w)
-RB=$(cat tmp.log | grep -zPo '\nrb\n'| wc -w)
-RR=$(cat tmp.log | grep -zPo '\nrr\n'| wc -w)
-RRA=$(cat tmp.log | grep -zPo '\nrra\n'| wc -w)
-RRB=$(cat tmp.log | grep -zPo '\nrrb\n'| wc -w)
-RRR=$(cat tmp.log | grep -zPo '\nrrr\n'| wc -w)
-TOTAL=$(($(cat tmp.log | wc -l) - 1))
+SA=$(cat tmp.log | grep -w 'sa'| wc -l)
+SB=$(cat tmp.log | grep -w 'sb'| wc -l)
+SS=$(cat tmp.log | grep -w 'ss'| wc -l)
+PA=$(cat tmp.log | grep -w 'pa'| wc -l)
+PB=$(cat tmp.log | grep -w 'pb'| wc -l)
+RA=$(cat tmp.log | grep -w 'ra'| wc -l)
+RB=$(cat tmp.log | grep -w 'rb'| wc -l)
+RR=$(cat tmp.log | grep -w 'rr'| wc -l)
+RRA=$(cat tmp.log | grep -w 'rra'| wc -l)
+RRB=$(cat tmp.log | grep -w 'rrb'| wc -l)
+RRR=$(cat tmp.log | grep -w 'rrr'| wc -l)
+TOTAL=$(($(cat tmp.log | wc -l)))
 
 if [ $SA -gt 0 ];
 then
