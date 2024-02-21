@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:58:38 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/16 21:49:57 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/21 13:01:12 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,56 @@ static void	sort_stack_b(t_stacks **stacks, int size)
 			rotate(stacks, STACK_B, 1);
 	}
 	reverse(stacks, STACK_B, rotates);
+}
+
+void	sort_ten_handler(t_stacks **stacks, int flag)
+{
+	if (flag == STACK_A)
+		sort_stack_a(stacks, 10);
+	else
+		sort_stack_b(stacks, 10);
+	sort_five_handler(stacks, STACK_A);
+	sort_five_handler(stacks, STACK_B);
+}
+
+void	sort_nine_handler(t_stacks **stacks, int flag)
+{
+	if (flag == STACK_A)
+		sort_stack_a(stacks, 9);
+	else
+		sort_stack_b(stacks, 9);
+	sort_five_handler(stacks, STACK_A);
+	sort_four_handler(stacks, STACK_B);
+}
+
+void	sort_eight_handler(t_stacks **stacks, int flag)
+{
+	if (flag == STACK_A)
+		sort_stack_a(stacks, 8);
+	else
+		sort_stack_b(stacks, 8);
+	sort_four_handler(stacks, STACK_A);
+	sort_four_handler(stacks, STACK_B);
+}
+
+void	sort_seven_handler(t_stacks **stacks, int flag)
+{
+	if (flag == STACK_A)
+		sort_stack_a(stacks, 7);
+	else
+		sort_stack_b(stacks, 7);
+	sort_four_handler(stacks, STACK_A);
+	three_handler_b(3, stacks);
+}
+
+void	sort_six_handler(t_stacks **stacks, int flag)
+{
+	if (flag == STACK_A)
+		sort_stack_a(stacks, 6);
+	else
+		sort_stack_b(stacks, 6);
+	three_handler_a(3, stacks);
+	three_handler_b(3, stacks);
 }
 
 void	sort_four_handler(t_stacks **stacks, int flag)

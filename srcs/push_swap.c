@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/16 21:34:10 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/21 11:45:11 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	print_stacks(t_stacks **stacks)
 
 int	main(int argc, char **argv)
 {
-	int			count;
 	t_stacks	*stacks;
 
 	if (argc < 2)
@@ -115,7 +114,6 @@ int	main(int argc, char **argv)
 	build_stack(&stacks, ++argv);
 	check_sorting(&stacks);
 	sort(&stacks, argc - 1);
-	count = 0;
 	//ft_printf("PRINT ORDER:\n");
 	//print_stacks(&stacks);
 	clear_stacks(&stacks);

@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/14 19:17:00 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/21 12:34:46 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void	three_handler_b(int size, t_stacks **stacks);
 void	under_three_handler(int size, t_stacks **stacks, int flag);
 void	sort_four_handler(t_stacks **stacks, int flag);
 void	sort_five_handler(t_stacks **stacks, int flag);
+void	sort_six_handler(t_stacks **stacks, int flag);
+void	sort_seven_handler(t_stacks **stacks, int flag);
+void	sort_eight_handler(t_stacks **stacks, int flag);
+void	sort_nine_handler(t_stacks **stacks, int flag);
+void	sort_ten_handler(t_stacks **stacks, int flag);
 
 void	init_counters(t_lnode *stack, t_counters *counters, int size);
 int		smaller(t_lnode *stack, int size);

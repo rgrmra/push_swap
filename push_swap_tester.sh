@@ -9,10 +9,24 @@ else
 	SIZE=0;
 fi
 
-export VAR="$(seq -2500 2500 | shuf -i 1-$SIZE | tr '\n' ' ')"
+if [ $4 -a !BIGGER ];
+then
+	BIGGER=$4;
+else
+	BIGGER=0;
+fi
 
-echo -ne "\n" > tmp.log
-./push_swap $VAR >> tmp.log
+if [ $5 -a !SMALLER ];
+then
+	SMALLER=$5;
+else
+	SMALLER=2147483647;
+fi
+
+export VAR="$(seq -100000 100000 | shuf -n $SIZE | tr '\n' ' ')"
+#export VAR="$(shuf -i 1-$SIZE | tr '\n' ' ')"
+
+./push_swap $VAR > tmp.log
 
 print() {
 	echo -ne "\033[1;97m$1: \033[1;93m$2  \033[1;m"
@@ -99,6 +113,19 @@ else
 	export MEDIAN=$(expr $TOTAL + $MEDIAN)
 fi
 
+if [ $TOTAL -gt $BIGGER ];
+then
+	BIGGER=$TOTAL;
+fi
+
+if [ $TOTAL -lt $SMALLER ];
+then
+	SMALLER=$TOTAL
+fi
+
+print 'SMALLER' $SMALLER
+print 'BIGGER' $BIGGER
+
 STATUS=$(./push_swap $VAR | ./checker_linux $VAR)
 
 echo -ne "\033[1mSTATUS: "
@@ -128,8 +155,6 @@ then
 		echo -e "\033[1;91mFAIL\033[1m";
 		echo -e $VAR >> fail.log;
 	fi
-else
-	exit
 fi
 
 if [ -z "$TIMES" ];
@@ -143,4 +168,4 @@ print 'MEDIAN' $(expr $MEDIAN / $TIMES)
 
 sleep 1
 
-./push_swap_tester.sh $SIZE $MEDIAN $TIMES
+./push_swap_tester.sh $SIZE $MEDIAN $TIMES $BIGGER $SMALLER
