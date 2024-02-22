@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:00:34 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/21 15:51:08 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/22 15:57:00 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exceptions(t_stacks **stacks, int size, int flag)
 {
 	if (size > 10)
 		return (1);
-	else if (size == 10)
+	else if (size >= 10)
 		sort_ten_handler(stacks, flag);
 	else if (size == 9)
 		sort_nine_handler(stacks, flag);

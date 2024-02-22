@@ -6,7 +6,7 @@
 #    By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 22:24:23 by rde-mour          #+#    #+#              #
-#    Updated: 2024/02/14 19:37:58 by rde-mour         ###   ########.org.br    #
+#    Updated: 2024/02/22 13:36:07 by rde-mour         ###   ########.org.br    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ INCLUDES			= -I ./includes \
 					  -I $(LIBFTXDIR)/includes
 
 COMPILER			= cc
-CFLAGS				= -Wall -Wextra -Werror -g3
+#CFLAGS				= -Wall -Wextra -Werror -g3
 MESSAGE				= mandatory
 
 ifdef				WITH_BONUS

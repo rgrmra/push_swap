@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */
+
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/21 12:15:11 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/22 12:10:32 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	sort_middler(int nbr[], int size)
 int	middler(t_lnode *stack, int size)
 {
 	t_lnode	*node;
-	int		nbr[20];
+	int		nbr[40];
 	int		i;
 
 	i = 0;
@@ -88,15 +88,40 @@ int	middler(t_lnode *stack, int size)
 	return (sort_middler(nbr, size));
 }
 
+
+int	middlerx(t_lnode *stack, int size)
+{
+	t_lnode *tmp;
+	int 	min;
+	int		big;
+	int 	small;
+
+	big = bigger(stack, size);
+	small = smaller(stack, size);
+	while (--size)
+	{
+		min = small;
+		tmp = stack;
+		while (tmp)
+		{
+			if (tmp->nbr > min && tmp->nbr < big)
+				min = tmp->nbr;
+			tmp = tmp->next;
+		}
+		big = min;
+	}
+	return (min);
+}
+
 void	init_counters(t_lnode *stack, t_counters *counters, int size)
 {
-	int	min;
-	int	max;
+	//int	min;
+	//int	max;
 
-	min = smaller(stack, size);
-	max = bigger(stack, size);
-	counters->big = (min + max) / 2;
-	counters->small = (min + counters->big) / 2;
+	//min = smaller(stack, size);
+	//max = bigger(stack, size);
+	counters->big = middlerx(stack, size / 2);//(min + max) / 2;
+	counters->small = middlerx(stack, size / 4 * 3);//(min + counters->big) / 2;
 	counters->ra = 0;
 	counters->rb = 0;
 	counters->rr = 0;
