@@ -6,46 +6,15 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:00:34 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/23 08:44:49 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/23 14:08:35 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	exceptions(t_stacks **stacks, int size, int flag)
-{
-	if (size > 100)
-		return (1);
-	else if (size > 10)
-		sort_handler(stacks, flag, size);
-	else if (size == 10)
-		sort_ten_handler(stacks, flag);
-	else if (size == 9)
-		sort_nine_handler(stacks, flag);
-	else if (size == 8)
-		sort_eight_handler(stacks, flag);
-	else if (size == 7)
-		sort_seven_handler(stacks, flag);
-	else if (size == 6)
-		sort_six_handler(stacks, flag);
-	else if (size == 5)
-		sort_five_handler(stacks, flag);
-	else if (size == 4)
-		sort_four_handler(stacks, flag);
-	else if (size == 3 && flag == STACK_A)
-		three_handler_a(size, stacks);
-	else if (size == 3)
-		three_handler_b(size, stacks);
-	else if (size == 2)
-		two_handler(stacks, flag);
-	else if (size == 1 && flag == STACK_B)
-		push(stacks, STACK_A, 1);
-	return (0);
-}
-
 static void	divide_stack_a(t_stacks **stacks, t_counters *counters, int *times)
 {
-	if (*times > 1 && (*stacks)->a->nbr < counters->big
+	if (*times && (*stacks)->a->nbr < counters->big
 		&& (*stacks)->a->next->nbr > counters->big
 		&& (*stacks)->a->nbr > counters->small)
 	{
@@ -101,15 +70,16 @@ static void	restore_stack_a(t_stacks **stacks, t_counters *counters, int *count)
 
 void	stack_a(int size, t_stacks **stacks, int *count)
 {
-	int			times;
 	t_counters	counters;
 
-	if (!exceptions(stacks, size, STACK_A))
+	if (size < HANDLER_LIMITER)
+	{
+		sort_handler(stacks, STACK_A, size);
 		return ;
+	}
 	init_counters((*stacks)->a, &counters, size);
-	times = size;
-	while (times--)
-		divide_stack_a(stacks, &counters, &times);
+	while (size--)
+		divide_stack_a(stacks, &counters, &size);
 	restore_stack_a(stacks, &counters, count);
 	stack_a(counters.ra, stacks, count);
 	stack_b(counters.rb, stacks, count);

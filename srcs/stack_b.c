@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:00:34 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/22 13:11:51 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/23 13:34:09 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	divide_stack_b(t_stacks **stacks, t_counters *counters, int *times)
 {
-	if (*times > 1 && (*stacks)->b->nbr >= counters->small
+	if (*times && (*stacks)->b->nbr >= counters->small
 		&& (*stacks)->b->next->nbr <= counters->small
 		&& (*stacks)->b->nbr <= counters->big)
 	{
@@ -63,16 +63,17 @@ static void	restore_stack_b(t_stacks **stacks, t_counters *counters)
 
 void	stack_b(int size, t_stacks **stacks, int *count)
 {
-	int			times;
 	t_counters	counters;
 
 	(*count)++;
-	if (!exceptions(stacks, size, STACK_B))
+	if (size < HANDLER_LIMITER)
+	{
+		sort_handler(stacks, STACK_B, size);
 		return ;
+	}
 	init_counters((*stacks)->b, &counters, size);
-	times = size;
-	while (times--)
-		divide_stack_b(stacks, &counters, &times);
+	while (size--)
+		divide_stack_b(stacks, &counters, &size);
 	stack_a(counters.pa - counters.ra, stacks, count);
 	restore_stack_b(stacks, &counters);
 	stack_a(counters.ra, stacks, count);

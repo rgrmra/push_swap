@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/23 07:54:19 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/23 13:58:23 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define PS_MIN -2147483648
 # define PS_MAX	+2147483647
+# define HANDLER_LIMITER 8
 
 typedef struct s_lnode		t_lnode;
 struct s_lnode
@@ -44,7 +45,6 @@ struct s_counters
 	int	big;
 	int	ra;
 	int	rb;
-	int	rr;
 	int	pa;
 	int	pb;
 };
@@ -56,26 +56,17 @@ enum e_flags
 	STACKS
 };
 
-int		exceptions(t_stacks **stacks, int size, int flag);
 void	stack_a(int size, t_stacks **stacks, int *count);
 void	stack_b(int size, t_stacks **stacks, int *count);
 
 void	two_handler(t_stacks **stacks, int flag);
 void	three_handler_a(int size, t_stacks **stacks);
 void	three_handler_b(int size, t_stacks **stacks);
-void	under_three_handler(int size, t_stacks **stacks, int flag);
-void	sort_four_handler(t_stacks **stacks, int flag);
-void	sort_five_handler(t_stacks **stacks, int flag);
-void	sort_six_handler(t_stacks **stacks, int flag);
-void	sort_seven_handler(t_stacks **stacks, int flag);
-void	sort_eight_handler(t_stacks **stacks, int flag);
-void	sort_nine_handler(t_stacks **stacks, int flag);
-void	sort_ten_handler(t_stacks **stacks, int flag);
 void	sort_handler(t_stacks **stacks, int flag, int size);
 
 void	init_counters(t_lnode *stack, t_counters *counters, int size);
 int		smaller(t_lnode *stack, int size);
-int		middler(t_lnode *stack, int size);
+int		middler(t_lnode *stack, int range, int size);
 int		bigger(t_lnode *stack, int size);
 void	check_sorting(t_stacks **stacks);
 

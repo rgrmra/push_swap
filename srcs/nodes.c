@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/23 07:53:27 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/23 13:57:59 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,63 +46,22 @@ int	bigger(t_lnode *stack, int size)
 	return (big);
 }
 
-static int	sort_middler(int nbr[], int size)
+int	middler(t_lnode *stack, int range, int size)
 {
-	int	i;
-	int	j;
-	int	tmp;
-
-	i = size;
-	while (--i > 0)
-	{
-		j = -1;
-		while (++j < i)
-		{
-			if (*(nbr + j) > *(nbr + j + 1))
-			{
-				tmp = *(nbr + j + 1);
-				*(nbr + j + 1) = *(nbr + j);
-				*(nbr + j) = tmp;
-			}
-		}
-	}
-	return (*(nbr + (size / 2)));
-}
-
-int	middler(t_lnode *stack, int size)
-{
-	t_lnode	*node;
-	int		nbr[500];
+	t_lnode	*tmp;
 	int		i;
-
-	i = 0;
-	node = stack;
-	while (i < size)
-	{
-		*(nbr + i++) = node->nbr;
-		if (node->next)
-			node = node->next;
-		else
-			break ;
-	}
-	return (sort_middler(nbr, size));
-}
-
-
-int	middlerx(t_lnode *stack, int size)
-{
-	t_lnode *tmp;
-	int 	min;
+	int		min;
 	int		big;
-	int 	small;
+	int		small;
 
 	big = bigger(stack, size);
 	small = smaller(stack, size);
-	while (--size)
+	while (--range)
 	{
 		min = small;
 		tmp = stack;
-		while (tmp)
+		i = 0;
+		while (tmp && i++ < size)
 		{
 			if (tmp->nbr > min && tmp->nbr < big)
 				min = tmp->nbr;
@@ -115,16 +74,10 @@ int	middlerx(t_lnode *stack, int size)
 
 void	init_counters(t_lnode *stack, t_counters *counters, int size)
 {
-	//int	min;
-	//int	max;
-
-	//min = smaller(stack, size);
-	//max = bigger(stack, size);
-	counters->big = middlerx(stack, size / 2);//(min + max) / 2;
-	counters->small = middlerx(stack, size / 4 * 3);//(min + counters->big) / 2;
+	counters->big = middler(stack, size / 2, llstsize(stack));
+	counters->small = middler(stack, size / 4 * 3, llstsize(stack));
 	counters->ra = 0;
 	counters->rb = 0;
-	counters->rr = 0;
 	counters->pa = 0;
 	counters->pb = 0;
 }
