@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/22 12:10:32 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/23 07:53:27 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	sort_middler(int nbr[], int size)
 int	middler(t_lnode *stack, int size)
 {
 	t_lnode	*node;
-	int		nbr[40];
+	int		nbr[500];
 	int		i;
 
 	i = 0;

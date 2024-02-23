@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:58:38 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/22 16:01:56 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/23 08:46:45 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ void	sort_handler(t_stacks **stacks, int flag, int size)
 	}
 	sort_handler(stacks, STACK_A, (size / 2) + (size % 2));
 	sort_handler(stacks, STACK_B, size / 2);
-	push(stacks, STACK_A, size / 2);
+	if (size / 2 > 3)
+		push(stacks, STACK_A, size / 2);
 }
 
 void	sort_ten_handler(t_stacks **stacks, int flag)

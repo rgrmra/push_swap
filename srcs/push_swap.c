@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/22 15:57:40 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/23 08:47:57 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	build_stack(t_stacks **stacks, char **argv)
 	long	nbr;
 	t_lnode	*p;
 
-	while (*argv)
+	while (*argv && *argv != (void *)0)
 	{
 		if (!(**argv))
 			ft_error(stacks);
@@ -116,6 +116,7 @@ int	main(int argc, char **argv)
 	sort(&stacks, argc - 1);
 	//ft_printf("PRINT ORDER:\n");
 	//print_stacks(&stacks);
+	check_sorting(&stacks);
 	clear_stacks(&stacks);
 	return (EXIT_SUCCESS);
 }
