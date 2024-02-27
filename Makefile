@@ -6,7 +6,7 @@
 #    By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 22:24:23 by rde-mour          #+#    #+#              #
-#    Updated: 2024/02/22 13:36:07 by rde-mour         ###   ########.org.br    #
+#    Updated: 2024/02/26 19:01:09 by rde-mour         ###   ########.org.br    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,14 @@ FILES				= push_swap.c \
 					  handler_three_b.c \
 					  handler.c
 
-FILES_BONUS			=
+FILES_BONUS			= push_swap.c \
+					  push_swap_utils.c \
+					  error.c \
+					  swap.c \
+					  push.c \
+					  rotate.c \
+					  reverse.c \
+					  sorting.c
 
 SRCSDIR				= ./srcs
 OBJSDIR				= ./objs
@@ -48,7 +55,7 @@ OBJS				= $(FILES:%.c=$(OBJSDIR)/%.o)
 SRCS_BONUS			= $(FILES_BONUS:%.c=$(SRCsDIR)/bonus/%_bonus.c)
 OBJS_BONUS			= $(FILES_BONUS:%.c=$(OBJSDIR)/bonus/%_bonus.o)
 
-DELETE				= $(OBJS_BONUS)
+#DELETE				= $(OBJS_BONUS)
 
 INCLUDES			= -I ./includes \
 					  -I $(LIBFTXDIR)/includes
@@ -68,7 +75,7 @@ endif
 all: 				$(NAME)
 
 $(NAME): 			$(LIBS) $(OBJS)
-					@rm -rf $(DELETE)
+#					@rm -rf $(DELETE)
 					@$(COMPILER) $(CFLAGS) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME)
 					@echo "$(BLUE)Compiled $(NAME) successfully$(RESET)"
 

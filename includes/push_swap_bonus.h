@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/26 18:34:36 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/26 19:44:48 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		middler(t_lnode *stack, int range, int size);
 int		bigger(t_lnode *stack, int size);
 void	check_sorting(t_stacks **stacks);
 
+void	sorting(t_stacks **stacks, char *move);
 void	sort_three(t_stacks **stacks);
 void	sort_four(t_stacks **stacks);
 void	sort_five(t_stacks **stacks);

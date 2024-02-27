@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:19:19 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/23 08:48:14 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/26 18:32:33 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	check_sorting(t_stacks **stacks)
 	}
 	if (node)
 		return ;
-	print_stacks(stacks);
 	clear_stacks(stacks);
 	exit(EXIT_SUCCESS);
 }
