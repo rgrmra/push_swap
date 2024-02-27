@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 17:31:04 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/14 18:02:14 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/27 19:34:39 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static void	min_bottom(t_stacks **stacks, int max)
 		swap(stacks, STACK_B);
 }
 
-void	three_handler_b(int size, t_stacks **stacks)
+void	three_handler_b(t_stacks **stacks)
 {
 	int		min;
 	int		max;
 
-	min = smaller((*stacks)->b, size);
-	max = bigger((*stacks)->b, size);
+	min = smaller((*stacks)->b, 3);
+	max = bigger((*stacks)->b, 3);
 	if ((*stacks)->b->nbr == min)
 		min_top(stacks, max);
 	else if ((*stacks)->b->next->nbr == min)

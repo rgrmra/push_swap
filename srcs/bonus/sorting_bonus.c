@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:19:19 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/26 20:20:05 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/27 19:47:27 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	check_sorting(t_stacks **stacks)
 		node = node->next;
 	}
 	if (node || (*stacks)->b)
-		ft_printf("KO\n");
+		ft_putendl_fd("KO", STDOUT_FILENO);
 	else
-		ft_printf("OK\n");
+		ft_putendl_fd("OK", STDOUT_FILENO);
 	clear_stacks(stacks);
 	exit(EXIT_SUCCESS);
 }
 
-void	sorting(t_stacks **stacks, char **move)
+int	sorter(t_stacks **stacks, char *move)
 {
 	if (!ft_strncmp(move, "sa\n", 5))
 		swap(stacks, STACK_A);
@@ -40,21 +40,22 @@ void	sorting(t_stacks **stacks, char **move)
 	else if (!ft_strncmp(move, "ss\n", 5))
 		swap(stacks, STACKS);
 	else if (!ft_strncmp(move, "pa\n", 5))
-		push(stacks, STACK_A, 1);
+		push(stacks, STACK_A);
 	else if (!ft_strncmp(move, "pb\n", 5))
-		push(stacks, STACK_B, 1);
+		push(stacks, STACK_B);
 	else if (!ft_strncmp(move, "ra\n", 5))
-		rotate(stacks, STACK_A, 1);
+		rotate(stacks, STACK_A);
 	else if (!ft_strncmp(move, "rb\n", 5))
-		rotate(stacks, STACK_B, 1);
+		rotate(stacks, STACK_B);
 	else if (!ft_strncmp(move, "rr\n", 5))
-		rotate(stacks, STACKS, 1);
+		rotate(stacks, STACKS);
 	else if (!ft_strncmp(move, "rra\n", 5))
-		reverse(stacks, STACK_A, 1);
+		reverse(stacks, STACK_A);
 	else if (!ft_strncmp(move, "rrb\n", 5))
-		reverse(stacks, STACK_B, 1);
+		reverse(stacks, STACK_B);
 	else if (!ft_strncmp(move, "rrr\n", 5))
-		reverse(stacks, STACKS, 1);
+		reverse(stacks, STACKS);
 	else
-		ft_error(stacks);
+		return (FAILURE);
+	return (SUCCESS);
 }

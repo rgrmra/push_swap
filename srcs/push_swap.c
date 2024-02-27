@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/23 09:42:55 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/27 19:42:17 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	check_duplicate(t_stacks **stacks, t_lnode *node)
 static void	build_stack(t_stacks **stacks, char **argv)
 {
 	long	nbr;
-	t_lnode	*p;
+	t_lnode	*node;
 
 	while (*argv && *argv != (void *)0)
 	{
@@ -50,9 +50,9 @@ static void	build_stack(t_stacks **stacks, char **argv)
 		nbr = ft_atol(*argv++);
 		if (nbr < PS_MIN || nbr > PS_MAX)
 			ft_error(stacks);
-		p = llstnew(nbr);
-		llstadd_back(&(*stacks)->a, p);
-		check_duplicate(stacks, p);
+		node = llstnew((int) nbr);
+		llstadd_back(&(*stacks)->a, node);
+		check_duplicate(stacks, node);
 	}
 	(*stacks)->size_a = llstsize((*stacks)->a);
 	(*stacks)->size_b = 0;
@@ -75,31 +75,6 @@ static void	sort(t_stacks **stacks, int argc)
 		stack_a((*stacks)->size_a, stacks, &count);
 }
 
-// TEMPORARY FUNCTIONS ---------------------------------------------------------
-void	print_stacks(t_stacks **stacks)
-{
-	t_lnode	*a;
-	t_lnode	*b;
-
-	a = (*stacks)->a;
-	b = (*stacks)->b;
-	while (a || b)
-	{
-		if (a)
-		{
-			ft_printf("a: %d", a->nbr);
-			a = a->next;
-		}
-		if (b)
-		{
-			ft_printf("\t\tb: %d", b->nbr);
-			b = b->next;
-		}
-		ft_printf("\n");
-	}
-}
-// TEMPORARY FUNCTIONS ---------------------------------------------------------
-
 int	main(int argc, char **argv)
 {
 	t_stacks	*stacks;
@@ -113,10 +88,7 @@ int	main(int argc, char **argv)
 	stacks->b = NULL;
 	build_stack(&stacks, ++argv);
 	check_sorting(&stacks);
-	sort(&stacks, argc - 1);
-	//ft_printf("PRINT ORDER:\n");
-	//print_stacks(&stacks);
-	//check_sorting(&stacks);
+	sort(&stacks, --argc);
 	clear_stacks(&stacks);
 	return (EXIT_SUCCESS);
 }

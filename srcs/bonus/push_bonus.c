@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:28:08 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/26 19:15:58 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/27 19:07:00 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,10 @@ static void	push_node(t_lnode **orig, t_lnode **dest)
 	*dest = node;
 }
 
-void	push(t_stacks **stacks, int flags, int times)
+void	push(t_stacks **stacks, int flags)
 {
-	if (!times)
-		return ;
-	if (flags == STACK_A && (*stacks)->size_b > 0)
-	{
+	if (flags == STACK_A && (*stacks)->b)
 		push_node(&(*stacks)->b, &(*stacks)->a);
-		(*stacks)->size_a++;
-		(*stacks)->size_b--;
-	}
-	else if (flags == STACK_B && (*stacks)->size_a > 0)
-	{
+	else if (flags == STACK_B && (*stacks)->a)
 		push_node(&(*stacks)->a, &(*stacks)->b);
-		(*stacks)->size_a--;
-		(*stacks)->size_b++;
-	}
-	if (--times)
-		push(stacks, flags, times);
 }

@@ -127,6 +127,7 @@ print 'SMALLER' $SMALLER
 print 'BIGGER' $BIGGER
 
 STATUS=$(./push_swap $VAR | ./checker_linux $VAR)
+#STATUS=$(./push_swap $VAR | ./checker $VAR)
 
 echo -ne "\033[1mSTATUS: "
 

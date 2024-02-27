@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:58:38 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/26 21:09:08 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/27 19:37:25 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int	stack_sorted(t_lnode *stack, int flag, int size)
 	while (node && --size)
 	{
 		if (flag == STACK_A && node->next && node->nbr > node->next->nbr)
-			return (0);
+			return (FAILURE);
 		else if (node->next && node->nbr < node->next->nbr)
-			return (0);
+			return (FAILURE);
 		node = node->next;
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 static void	sort_stack_a(t_stacks **stacks, int size)
@@ -64,7 +64,7 @@ static void	sort_stack_b(t_stacks **stacks, int size)
 	{
 		if ((*stacks)->b->nbr >= mid && pushs--)
 			push(stacks, STACK_A, 1);
-		else 
+		else
 		{
 			rotate(stacks, STACK_B, 1);
 			rotates++;
@@ -77,11 +77,11 @@ static void	sort_stack_b(t_stacks **stacks, int size)
 static int	check_handler(t_stacks **stacks, int flag, int size)
 {
 	if (size > 3)
-		return (1);
+		return (FAILURE);
 	else if (size == 3 && flag == STACK_A)
-		three_handler_a(size, stacks);
+		three_handler_a(stacks);
 	else if (size == 3)
-		three_handler_b(size, stacks);
+		three_handler_b(stacks);
 	else if (size == 2 && flag == STACK_B)
 	{
 		if ((*stacks)->b->nbr < (*stacks)->b->next->nbr)
@@ -95,12 +95,12 @@ static int	check_handler(t_stacks **stacks, int flag, int size)
 	}
 	else if (size == 1 && flag == STACK_B)
 		push(stacks, STACK_A, 1);
-	return (0);
+	return (SUCCESS);
 }
 
 void	sort_handler(t_stacks **stacks, int flag, int size)
 {
-	if (!check_handler(stacks, flag, size))
+	if (check_handler(stacks, flag, size))
 		return ;
 	if (flag == STACK_A)
 	{

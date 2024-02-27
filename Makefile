@@ -6,7 +6,7 @@
 #    By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 22:24:23 by rde-mour          #+#    #+#              #
-#    Updated: 2024/02/26 19:01:09 by rde-mour         ###   ########.org.br    #
+#    Updated: 2024/02/27 19:51:01 by rde-mour         ###   ########.org.br    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,18 +55,15 @@ OBJS				= $(FILES:%.c=$(OBJSDIR)/%.o)
 SRCS_BONUS			= $(FILES_BONUS:%.c=$(SRCsDIR)/bonus/%_bonus.c)
 OBJS_BONUS			= $(FILES_BONUS:%.c=$(OBJSDIR)/bonus/%_bonus.o)
 
-#DELETE				= $(OBJS_BONUS)
-
 INCLUDES			= -I ./includes \
 					  -I $(LIBFTXDIR)/includes
 
 COMPILER			= cc
-#CFLAGS				= -Wall -Wextra -Werror -g3
+CFLAGS				= -Wall -Wextra -Werror
 MESSAGE				= mandatory
 
 ifdef				WITH_BONUS
 					NAME := $(NAME_BONUS)
-#					DELETE := $(OBJS)
 					SRCS := $(SRCS_BONUS)
 					OBJS := $(OBJS_BONUS)
 					MESSAGE	= bonus
@@ -75,7 +72,6 @@ endif
 all: 				$(NAME)
 
 $(NAME): 			$(LIBS) $(OBJS)
-#					@rm -rf $(DELETE)
 					@$(COMPILER) $(CFLAGS) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME)
 					@echo "$(BLUE)Compiled $(NAME) successfully$(RESET)"
 
@@ -99,7 +95,7 @@ clean:
 fclean:				clean
 					@make fclean -sC $(LIBFTXDIR)
 					@echo "$(RED)Removing$(RESET) $(NAME)"
-					@rm -rf $(NAME)
+					@rm -rf $(NAME) $(NAME_BONUS)
 
 re:					fclean all
 

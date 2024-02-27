@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/26 20:17:54 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/02/27 19:47:57 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	check_duplicate(t_stacks **stacks, t_lnode *node)
 static void	build_stack(t_stacks **stacks, char **argv)
 {
 	long	nbr;
-	t_lnode	*p;
+	t_lnode	*node;
 
-	while (*argv && *argv != (void *)0)
+	while (*argv)
 	{
 		if (!(**argv))
 			ft_error(stacks);
@@ -50,15 +50,13 @@ static void	build_stack(t_stacks **stacks, char **argv)
 		nbr = ft_atol(*argv++);
 		if (nbr < PS_MIN || nbr > PS_MAX)
 			ft_error(stacks);
-		p = llstnew(nbr);
-		llstadd_back(&(*stacks)->a, p);
-		check_duplicate(stacks, p);
+		node = llstnew((int) nbr);
+		llstadd_back(&(*stacks)->a, node);
+		check_duplicate(stacks, node);
 	}
-	(*stacks)->size_a = llstsize((*stacks)->a);
-	(*stacks)->size_b = 0;
 }
 
-static void	checker(t_stacks **stacks, int argc)
+static void	checker(t_stacks **stacks)
 {
 	char	*move;
 
@@ -67,37 +65,15 @@ static void	checker(t_stacks **stacks, int argc)
 		move = get_next_line(STDIN_FILENO);
 		if (!move)
 			break ;
-		sorting(stacks, &move);
-		print_stacks(stacks);
+		if (!sorter(stacks, move))
+		{
+			free(move);
+			ft_error(stacks);
+		}
 		free(move);
 	}
 	check_sorting(stacks);
 }
-
-// TEMPORARY FUNCTIONS ---------------------------------------------------------
-void	print_stacks(t_stacks **stacks)
-{
-	t_lnode	*a;
-	t_lnode	*b;
-
-	a = (*stacks)->a;
-	b = (*stacks)->b;
-	while (a || b)
-	{
-		if (a)
-		{
-			ft_printf("a: %d", a->nbr);
-			a = a->next;
-		}
-		if (b)
-		{
-			ft_printf("\t\tb: %d", b->nbr);
-			b = b->next;
-		}
-		ft_printf("\n");
-	}
-}
-// TEMPORARY FUNCTIONS ---------------------------------------------------------
 
 int	main(int argc, char **argv)
 {
@@ -111,9 +87,7 @@ int	main(int argc, char **argv)
 	stacks->a = NULL;
 	stacks->b = NULL;
 	build_stack(&stacks, ++argv);
-	checker(&stacks, argc - 1);
-	//ft_printf("PRINT ORDER:\n");
-	print_stacks(&stacks);
+	checker(&stacks);
 	clear_stacks(&stacks);
 	return (EXIT_SUCCESS);
 }
