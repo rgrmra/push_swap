@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 13:24:40 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/14 21:16:55 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/04 12:50:34 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	reverse(t_stacks **stacks, int flags, int times)
 	if (flags == STACK_B || flags == STACKS)
 		reverse_node(&(*stacks)->b);
 	if (flags == STACK_A)
-		ft_printf("rra\n");
+		ft_putendl_fd("rra", 1);
 	else if (flags == STACK_B)
-		ft_printf("rrb\n");
+		ft_putendl_fd("rrb", 1);
 	else if (flags == STACKS)
-		ft_printf("rrr\n");
+		ft_putendl_fd("rrr", 1);
 	if (--times)
 		reverse(stacks, flags, times);
 }

@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 20:18:27 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/23 13:57:59 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/04 13:39:49 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int	middler(t_lnode *stack, int range, int size)
 
 void	init_counters(t_lnode *stack, t_counters *counters, int size)
 {
-	counters->big = middler(stack, size / 2, llstsize(stack));
-	counters->small = middler(stack, size / 4 * 3, llstsize(stack));
+	counters->big = middler(stack, size / 2, size);
+	counters->small = middler(stack, size / 4 * 3, size);
 	counters->ra = 0;
 	counters->rb = 0;
 	counters->pa = 0;

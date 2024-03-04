@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:28:08 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/21 11:16:40 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/04 12:51:22 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	push(t_stacks **stacks, int flags, int times)
 		push_node(&(*stacks)->b, &(*stacks)->a);
 		(*stacks)->size_a++;
 		(*stacks)->size_b--;
-		ft_printf("pa\n");
+		ft_putendl_fd("pa", 1);
 	}
 	else if (flags == STACK_B && (*stacks)->size_a > 0)
 	{
 		push_node(&(*stacks)->a, &(*stacks)->b);
 		(*stacks)->size_a--;
 		(*stacks)->size_b++;
-		ft_printf("pb\n");
+		ft_putendl_fd("pb", 1);
 	}
 	if (--times)
 		push(stacks, flags, times);
