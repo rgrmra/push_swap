@@ -2,6 +2,12 @@
 
 echo -e "\n\033[1;95mPUSH SWAP TESTER"
 
+if [ ! -e "./push_swap" ];
+then
+    echo "Push_swap binary not found."
+    exit 1
+fi
+
 if [ $1 -a !SIZE ];
 then
 	SIZE=$1;
