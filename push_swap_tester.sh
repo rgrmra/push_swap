@@ -1,6 +1,15 @@
 #!/bin/bash
 
-echo -e "\033[1;95mPUSH SWAP TESTER"
+echo -e "\033[1;95mPUSH SWAP TESTER\033[0m"
+
+if [[ $(./checker_linux 2> /dev/null;  echo $?) -gt 0 ]]
+then 
+	echo -e "\n\033[1;91m./checker_linux is missing";
+	exit;
+elif [[ $(./push_swap 2> /dev/null; echo $?) -gt 0 ]]
+then
+	make
+fi
 
 if [[ $1 -lt 0 ]] && ! [[ $1 =~ '^[0-9]+$' ]]
 then
