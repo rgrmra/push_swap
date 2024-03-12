@@ -1,6 +1,21 @@
 #!/bin/bash
 
-echo -e "\n\033[1;95mPUSH SWAP TESTER"
+echo -e "\033[1;95mPUSH SWAP TESTER\033[0m"
+
+if [[ $(./checker_linux 2> /dev/null;  echo $?) -gt 0 ]]
+then 
+	echo -e "\n\033[1;91m./checker_linux is missing";
+	exit;
+elif [[ $(./push_swap 2> /dev/null; echo $?) -gt 0 ]]
+then
+	make
+fi
+
+if [[ $1 -lt 0 ]] && ! [[ $1 =~ '^[0-9]+$' ]]
+then
+	echo -e "\033[1;97m$0 <valor>\n$0 100\033[0m";
+	exit;
+fi
 
 if [ ! -e "./push_swap" ];
 then
@@ -175,4 +190,11 @@ print 'MEDIAN' $(expr $MEDIAN / $TIMES)
 
 sleep 1
 
-./push_swap_tester.sh $SIZE $MEDIAN $TIMES $BIGGER $SMALLER
+echo -e ""
+
+if [ $SIZE -gt 1 ];
+then
+	$0 $SIZE $MEDIAN $TIMES $BIGGER $SMALLER
+else
+	echo -e "\n\033[1;97m$0 <valor>\n$0 100\033[0m"
+fi
