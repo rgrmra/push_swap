@@ -2,11 +2,11 @@
 
 echo -e "\033[1;95mPUSH SWAP TESTER\033[0m"
 
-if [[ $(./checker_linux 2> /dev/null;  echo $?) -gt 0 ]]
+if [ ! -e "./checker_linux" ];
 then 
 	echo -e "\n\033[1;91m./checker_linux is missing";
 	exit;
-elif [[ $(./push_swap 2> /dev/null; echo $?) -gt 0 ]]
+elif [ ! -e "./push_swap" ];
 then
 	make
 fi
@@ -15,12 +15,6 @@ if [[ $1 -lt 0 ]] && ! [[ $1 =~ '^[0-9]+$' ]]
 then
 	echo -e "\033[1;97m$0 <valor>\n$0 100\033[0m";
 	exit;
-fi
-
-if [ ! -e "./push_swap" ];
-then
-    echo "Push_swap binary not found."
-    exit 1
 fi
 
 if [ $1 -a !SIZE ];
