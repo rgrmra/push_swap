@@ -1,6 +1,12 @@
 #!/bin/bash
 
-echo -e "\n\033[1;95mPUSH SWAP TESTER"
+echo -e "\033[1;95mPUSH SWAP TESTER"
+
+if [[ $1 -lt 0 ]] && ! [[ $1 =~ '^[0-9]+$' ]]
+then
+	echo -e "\033[1;97m$0 <valor>\n$0 100\033[0m";
+	exit;
+fi
 
 if [ $1 -a !SIZE ];
 then
@@ -169,4 +175,11 @@ print 'MEDIAN' $(expr $MEDIAN / $TIMES)
 
 sleep 1
 
-./push_swap_tester.sh $SIZE $MEDIAN $TIMES $BIGGER $SMALLER
+echo -e ""
+
+if [ $SIZE -gt 1 ];
+then
+	$0 $SIZE $MEDIAN $TIMES $BIGGER $SMALLER
+else
+	echo -e "\n\033[1;97m$0 <valor>\n$0 100\033[0m"
+fi
