@@ -6,11 +6,6 @@
    <img src="https://img.shields.io/github/license/rgrmra/push_swap?color=blue&style=for-the-badge" />
 </p>
 
-# Project
-
-> [!NOTE]
-> In construction!
-
 # Push Swap Tester
 
 > [!IMPORTANT]
@@ -18,6 +13,13 @@
 > You could access it with the link bellow:
 >
 > Tester: [Push Swap Tester](https://github.com/rgrmra/push_swap_tester)
+
+# Project
+
+> [!NOTE]
+> In construction!
+
+<img align="center" src="https://royalbox.com.br/github/push_swap_quick_sort.png">
 
 # How to use it?
 
