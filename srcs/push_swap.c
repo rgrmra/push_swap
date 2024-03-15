@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:39:45 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/03/13 18:48:06 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/15 13:14:40 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	check_number(t_stacks **stacks, char *nbr)
 		ft_error(stacks);
 	if (*nbr == '-' || *nbr == '+')
 		nbr++;
+	if (!(*nbr))
+		ft_error(stacks);
 	while (ft_isdigit(*nbr))
 		nbr++;
 	if (*nbr)
