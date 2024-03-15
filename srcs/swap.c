@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 12:00:16 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/03/04 12:51:04 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/14 21:30:53 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	swap(t_stacks **stacks, int flag)
 	if (flag == STACK_B || flag == STACKS)
 		swap_node(&(*stacks)->b);
 	if (flag == STACK_A)
-		ft_putendl_fd("sa", 1);
+		ft_putendl_fd("sa", STDOUT_FILENO);
 	else if (flag == STACK_B)
-		ft_putendl_fd("sb", 1);
+		ft_putendl_fd("sb", STDOUT_FILENO);
 	else if (flag == STACKS)
-		ft_putendl_fd("ss", 1);
+		ft_putendl_fd("ss", STDOUT_FILENO);
 }

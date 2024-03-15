@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:26 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/27 19:34:49 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/12 18:39:22 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <unistd.h>
 # include "libft.h"
 
 # define PS_MIN -2147483648

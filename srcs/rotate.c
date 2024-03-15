@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 13:08:03 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/03/04 12:50:48 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/14 21:33:21 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ void	rotate(t_stacks **stacks, int flag, int times)
 	if (flag == STACK_B || flag == STACKS)
 		rotate_node(&(*stacks)->b);
 	if (flag == STACK_A)
-		ft_putendl_fd("ra", 1);
+		ft_putendl_fd("ra", STDOUT_FILENO);
 	else if (flag == STACK_B)
-		ft_putendl_fd("rb", 1);
+		ft_putendl_fd("rb", STDOUT_FILENO);
 	else if (flag == STACKS)
-		ft_putendl_fd("rr", 1);
-	if (--times)
-		rotate(stacks, flag, times);
+		ft_putendl_fd("rr", STDOUT_FILENO);
+	rotate(stacks, flag, --times);
 }

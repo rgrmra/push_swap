@@ -6,7 +6,7 @@
 /*   By: rde-mour <rde-mour@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:19:19 by rde-mour          #+#    #+#             */
-/*   Updated: 2024/02/27 19:47:27 by rde-mour         ###   ########.org.br   */
+/*   Updated: 2024/03/14 21:33:00 by rde-mour         ###   ########.org.br   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,27 @@ void	check_sorting(t_stacks **stacks)
 
 int	sorter(t_stacks **stacks, char *move)
 {
-	if (!ft_strncmp(move, "sa\n", 5))
+	if (ft_strncmp(move, "sa\n", 5) == 0)
 		swap(stacks, STACK_A);
-	else if (!ft_strncmp(move, "sb\n", 5))
+	else if (ft_strncmp(move, "sb\n", 5) == 0)
 		swap(stacks, STACK_B);
-	else if (!ft_strncmp(move, "ss\n", 5))
+	else if (ft_strncmp(move, "ss\n", 5) == 0)
 		swap(stacks, STACKS);
-	else if (!ft_strncmp(move, "pa\n", 5))
+	else if (ft_strncmp(move, "pa\n", 5) == 0)
 		push(stacks, STACK_A);
-	else if (!ft_strncmp(move, "pb\n", 5))
+	else if (ft_strncmp(move, "pb\n", 5) == 0)
 		push(stacks, STACK_B);
-	else if (!ft_strncmp(move, "ra\n", 5))
+	else if (ft_strncmp(move, "ra\n", 5) == 0)
 		rotate(stacks, STACK_A);
-	else if (!ft_strncmp(move, "rb\n", 5))
+	else if (ft_strncmp(move, "rb\n", 5) == 0)
 		rotate(stacks, STACK_B);
-	else if (!ft_strncmp(move, "rr\n", 5))
+	else if (ft_strncmp(move, "rr\n", 5) == 0)
 		rotate(stacks, STACKS);
-	else if (!ft_strncmp(move, "rra\n", 5))
+	else if (ft_strncmp(move, "rra\n", 5) == 0)
 		reverse(stacks, STACK_A);
-	else if (!ft_strncmp(move, "rrb\n", 5))
+	else if (ft_strncmp(move, "rrb\n", 5) == 0)
 		reverse(stacks, STACK_B);
-	else if (!ft_strncmp(move, "rrr\n", 5))
+	else if (ft_strncmp(move, "rrr\n", 5) == 0)
 		reverse(stacks, STACKS);
 	else
 		return (FAILURE);
