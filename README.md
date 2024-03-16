@@ -19,7 +19,7 @@
 > [!NOTE]
 > In construction!
 
-<img align="center" src="https://royalbox.com.br/github/push_swap_quick_sort.png">
+<img align="center" src="https://royalbox.com.br/github/push_swap_quicksort.png">
 
 # How to use it?
 
