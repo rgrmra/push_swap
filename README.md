@@ -55,7 +55,16 @@ The last element of both stacks becomes the last one.
 
 <img align="center" src="https://royalbox.com.br/github/push_swap_moves.png">
 
-### Algorithm
+### Algorithm:
+
+This algorithm utilizes a Quicksort algorithm to sort the stack. But, insted of utilizing just only one pivot, it utilizes two pivots.
+
+The problem is that we have some limitations of moves to do, and limit of operations that can be efficient to pass in the avaliation system.<br>
+It's necessary to achieve to 700 moves with 100 numbers in the stack and 5500 moves with 500 numbers in the stack, the whole problem is that using just a simple Quicksort we have a range of moves between 700-800 moves with 100 numbers and 5000-6000 moves with 500 numbers.
+
+So, insted of divide the stacks puting the largest numbers on one side and the smallest in the other side, it's better to divide the stack with 3 pivots; the big and the small pivot.
+
+With this in mind, we can divide the stack in three pieces of numbers and utilizes recursion to do it again and again until the range of the stack achieve seven numbers. Then, we divide the stacks in two with only one pivot until the stack achieve three elements or less. With three elements or less, we can sort the stack, go to the previus recusion and do it until the stack is sorted.
 
 <img align="center" src="https://royalbox.com.br/github/push_swap_quicksort.png">
 
