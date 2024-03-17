@@ -16,10 +16,51 @@
 
 # Project
 
-> [!NOTE]
-> In construction!
+The project receives an amount of random numbers, store it in a stack and sort it in ascending order with a bunch of limited operations.
+
+### Operations:
+
+**sa (Swap A):** swap the first two elements at the top of stack A.<br>
+Do nothing if there is only one or none elements.
+
+**sb (Swap B):** swap the first two elements at the top of stack B.<br>
+Do nothing if there is only one or none elements.
+
+**ss (Swap A and B):** swap the first two elements at the top of stack A and B at the same time.<br>
+Do nothing if there is only one or none elements.
+
+**pa (Push A):** Take the first element at the top of stack B and put it at the top of stack A.<br>
+Do nothing if stack B is empty.
+
+**pb (Push B):** Take the first element at the top of stack A and put it at the top of stack B.<br>
+Do nothing if stack A is empty.
+
+**ra (Rotate A):** Shift up all elements of stack A by one.<br>
+The first element becomes the last one.
+
+**rb (Rotate B):** Shift up all elements of stack B by one.<br>
+The first element becomes the last one.
+
+**rr (Rotate A and B):** Shift up all elements of stack A and B by one at the same time by one.<br>
+The first element of both stacks becomes the last one.
+
+**rra (Reverse Rotate A):** Shift down all elements of stack A by one.<br>
+The last element becomes the first one.
+
+**rrb (Reverse Rotate B):** Shift down all elements of stack B by one.<br>
+The last element becomes the first one.
+
+**rrr (Reverse Rotate A and B):** Shift down all elements of stack A and B at the same time by one.<br>
+The last element of both stacks becomes the last one.
+
+<img align="center" src="https://royalbox.com.br/github/push_swap_moves.png">
+
+### Algorithm
 
 <img align="center" src="https://royalbox.com.br/github/push_swap_quicksort.png">
+
+> [!NOTE]
+> In construction!
 
 # How to use it?
 
